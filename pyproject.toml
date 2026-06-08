@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "beam-ssz"
+version = "0.6.0"
+description = "Mathematical Research Scaffold for Real-Beaming in Segmented Spacetime (SSZ)"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Carmen N. Wrede"},
+    {name = "Lino P. Casu"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: Other/Proprietary License",  # Anticapitalist Software License 1.4
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+]
+
+[project.optional-dependencies]
+numerical = ["h5py>=3.8.0"]
+symbolic = ["sympy>=1.11.0"]
+plots = ["matplotlib>=3.7.0"]
+all = ["h5py>=3.8.0", "sympy>=1.11.0", "matplotlib>=3.7.0"]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+]
+docs = [
+    "sphinx>=7.0.0",
+    "sphinx-rtd-theme>=1.3.0",
+]
+
+[project.urls]
+Repository = "https://github.com/beam-ssz/beam-ssz-v0.6"
+Documentation = "https://github.com/beam-ssz/beam-ssz-v0.6/docs"
+Changelog = "https://github.com/beam-ssz/beam-ssz-v0.6/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-v --tb=short"
+
+[tool.black]
+line-length = 100
+target-version = ['py310', 'py311', 'py312']
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
