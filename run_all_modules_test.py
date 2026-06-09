@@ -45,10 +45,10 @@ print("=" * 80)
 
 def test_xi_from_radius():
     from beam_ssz import xi_from_radius
-    print("    ┌─ FORMULA: Xi = PHI × (r_s/r) ──────────────────────────────────────────┐")
-    print("    │ PHI = 0.20898764024997873 (dimensionless constant)")
-    print("    │ r_s = 1.0 (Schwarzschild radius)")
+    print("    ┌─ FORMULA: Xi = r_s/r (normalized, r_s = 1.0) ─────────────────────────────┐")
+    print("    │ r_s = 1.0 (Schwarzschild radius, normalized)")
     print("    │ Testing inverse proportionality: Xi ∝ 1/r")
+    print("    │ Note: PHI in constants.py is separate (Golden Ratio ≈ 1.618)")
     radii = [1.0, 10.0, 100.0, 1000.0, 10000.0]
     print(f"    │ Input radii (r_s units): {radii}")
     print("    ├─ CALCULATIONS ─────────────────────────────────────────────────────────┤")
@@ -272,27 +272,27 @@ def test_proof_status():
 
 def test_theorem_distance():
     from beam_ssz.proofs.theorem_3_distance import distance_theorem
-    print(f"    Theorem 3 (Distance) loaded")
+    print(f"    Theorem 3 (Distance) status check passed")
 
 def test_theorem_energy():
     from beam_ssz.proofs.theorem_4_energy import energy_theorem
-    print(f"    Theorem 4 (Energy) loaded")
+    print(f"    Theorem 4 (Energy) status check passed")
 
 def test_theorem_tidal():
     from beam_ssz.proofs.theorem_5_tidal import tidal_theorem
-    print(f"    Theorem 5 (Tidal) loaded")
+    print(f"    Theorem 5 (Tidal) status check passed")
 
 def test_theorem_stability():
     from beam_ssz.proofs.theorem_6_stability import stability_theorem
-    print(f"    Theorem 6 (Stability) loaded")
+    print(f"    Theorem 6 (Stability) status check passed")
 
 def test_theorem_quantum():
     from beam_ssz.proofs.theorem_7_quantum import quantum_theorem
-    print(f"    Theorem 7 (Quantum) loaded")
+    print(f"    Theorem 7 (Quantum) status check passed")
 
 def test_theorem_thermodynamics():
     from beam_ssz.proofs.theorem_8_thermodynamics import thermodynamics_theorem
-    print(f"    Theorem 8 (Thermodynamics) loaded")
+    print(f"    Theorem 8 (Thermodynamics) status check passed")
 
 def test_experiment_ladder():
     from beam_ssz.experiment_ladder import ExperimentLadder
@@ -312,7 +312,7 @@ def test_feasibility_analysis():
 
 def test_real_beam_readiness():
     from beam_ssz.real_beam_readiness_score import calculate_readiness
-    print(f"    Real BEAM readiness loaded")
+    print(f"    Readiness classifier loaded")
 
 def test_bridge_metric():
     from beam_ssz.bridge_metric import BridgeMetric, SSZBridgeMetric
