@@ -307,29 +307,51 @@ def energy_theorem() -> dict:
     proof = Theorem4EnergyProof()
     
     # Mathematical validation using tensor core
-    from ..tensor_core import ssz_metric, check_nec, check_wec
+    from ..tensor_core import ssz_metric, check_nec, check_wec, compute_stress_energy
     import numpy as np
     
     # Create SSZ metric at test point
     x_test = np.array([0.0, 1.0, 0.0, 0.0])
-    g = ssz_metric(x_test, D=0.5, s=2.0)
+    D_test, s_test = 0.5, 2.0
+    g = ssz_metric(x_test, D=D_test, s=s_test)
     
-    # Check energy conditions
-    nec_passed = check_nec(g)
-    wec_passed = check_wec(g)
+    # Create metric function for stress-energy computation
+    def g_func(x):
+        return ssz_metric(x, D=D_test, s=s_test)
+    
+    # Compute stress-energy tensor for proper NEC/WEC checks
+    try:
+        T = compute_stress_energy(g_func, x_test)
+        
+        # Check energy conditions with all required arguments
+        nec_passed = check_nec(T, g, x_test)
+        wec_passed = check_wec(T, g, x_test)
+    except (np.linalg.LinAlgError, ValueError) as e:
+        # Handle singular matrix or other numerical issues
+        nec_passed = False
+        wec_passed = False
+        T = None
     
     # Calculate energy density (proxy)
-    energy_density = 1.0 / (0.5 ** 2)  # ~1/D²
+    energy_density = 1.0 / (D_test ** 2)  # ~1/D²
+    
+    # Calculate determinant safely
+    try:
+        det_g = float(np.linalg.det(g))
+        if np.isnan(det_g) or np.isinf(det_g):
+            det_g = 0.0
+    except np.linalg.LinAlgError:
+        det_g = 0.0
     
     validation_result = {
         "theorem": 4,
         "name": "Energy Conditions",
         "status": "MATHEMATICALLY_VALIDATED" if (nec_passed and wec_passed) else "CONDITIONAL",
         "validation": {
-            "nec_passed": nec_passed,
-            "wec_passed": wec_passed,
+            "nec_passed": str(nec_passed),
+            "wec_passed": str(wec_passed),
             "energy_density_calculated": energy_density,
-            "metric_determinant": np.linalg.det(g),
+            "metric_determinant": det_g,
             "test_point": x_test.tolist()
         },
         "conclusion": "Energy conditions satisfied for SSZ metric" if (nec_passed and wec_passed) else "Energy conditions require full GR solution"

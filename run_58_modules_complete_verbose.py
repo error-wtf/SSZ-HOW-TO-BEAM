@@ -541,7 +541,8 @@ def test_theorem_3_distance():
     result = distance_theorem()
     print(f"│ Theorem: {result['theorem']}")
     print(f"│ Name: {result['name']}")
-    print(f"│ Result: {result['result']}")
+    print(f"│ Status: {result['status']}")
+    print(f"│ Conclusion: {result['conclusion']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
     return "Theorem 3 verified"
 

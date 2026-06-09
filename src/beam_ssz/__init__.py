@@ -26,6 +26,14 @@ from .geodesics import radial_freefall_velocity, effective_potential
 from .radial_scaling import rho_between_x
 from .holonomy import closed_loop_invariant
 
+# Tidal safety
+from .tidal import (
+    tidal_acceleration_proxy,
+    evaluate_tidal_safety,
+    compute_tidal_acceleration,
+    TidalLimit,
+)
+
 # v0.6 bridge metric
 from .bridge_metric import SSZBridgeMetric, create_canonical_bridge, evaluate_bridge_candidate
 
