@@ -10,7 +10,7 @@ from beam_ssz.bridge_metric import (
 )
 from beam_ssz.xi import evaluate_xi_x
 from beam_ssz.proof_framework import BeamingProofFramework
-from beam_ssz.proof_status import check_proof_status
+from beam_ssz.proof_status import check_proof_status, is_beaming_proven
 from beam_ssz.einstein_solver import estimate_energy_requirements
 from beam_ssz.stability_analysis import BridgeStabilityAnalyzer
 from beam_ssz.quantum_consistency import BridgeQuantumAnalyzer

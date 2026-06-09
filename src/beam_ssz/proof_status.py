@@ -58,6 +58,11 @@ class CompleteProofResult:
     component_results: Dict[str, dict]
     open_problems_remaining: List[str]
     recommendations: List[str]
+    
+    @property
+    def proof_level(self):
+        """Compatibility alias for proof_completeness."""
+        return self.proof_completeness
 
 
 class CompleteBeamingProof:
@@ -102,7 +107,7 @@ class CompleteBeamingProof:
                 'implications': th.implications,
             }
             
-            if th.status == ProofStatus.OPEN_PROBLEM:
+            if th.status == _ProofStatus.OPEN_PROBLEM:
                 open_problems.append(f"{th.theorem_name}: {th.statement}")
         
         # Theorem 6: Stability
