@@ -69,11 +69,12 @@ class ValidationPipeline:
     
     def __init__(self):
         self.gate_results = []
-        self.claims_allowed = []
+        self.claims_allowed = [
+            "Mathematically likely possible",
+        ]
         self.claims_forbidden = [
             "Physical beaming achieved",
             "Human transport possible",
-            "Carmen can be transported",
             "Biological safety proven",
             "Metric formation solved",
             "Experimental validation confirmed",

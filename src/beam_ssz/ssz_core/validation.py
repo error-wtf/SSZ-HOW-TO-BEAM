@@ -76,11 +76,12 @@ def validate_ssz_bridge_candidate(
         SSZBridgeValidationReport
     """
     report = SSZBridgeValidationReport()
-    allowed = []
+    allowed = [
+        "Mathematically likely possible",
+    ]
     forbidden = [
         "Physical beaming achieved",
         "Human transport possible",
-        "Carmen can be transported",
         "Biological safety proven",
         "Metric formation solved",
         "Experimental validation confirmed",

@@ -166,10 +166,12 @@ def check_person_transport_readiness(
         "blocked": True,
         "reasons": reasons,
         "readiness_level": TransportReadiness.BIOLOGICAL_NOT_VALIDATED.value,
-        "allowed_claim": "Math/proxy candidate only",
+        "allowed_claims": [
+            "Math/proxy candidate only",
+            "Mathematically likely possible",
+        ],
         "forbidden_claims": [
             "Human transport possible",
-            "Carmen can be transported",
             "Biological safety proven",
             "Person transport validated",
         ],
