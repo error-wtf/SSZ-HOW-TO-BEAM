@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-COMPLETE MATHEMATICAL PROOF DEMONSTRATION
+THEOREM STATUS MATRIX DEMONSTRATION
 
-This script demonstrates all 8 theorems with rigorous mathematical proofs.
+This script demonstrates theorem status checks for SSZ bridge candidates.
 """
 import sys
 sys.path.insert(0, 'src')
@@ -26,8 +26,8 @@ def prove_all_theorems():
     """Execute all mathematical proofs."""
     
     print_separator()
-    print("COMPLETE MATHEMATICAL PROOF OF BEAM-SSZ")
-    print("Continuous Worldline Transfer via SSZ Bridge Metric")
+    print("CONDITIONAL SSZ PROOF-STATUS CHECK")
+    print("Continuous Worldline Bridge Candidate - Not Physical Beaming Proof")
     print_separator()
     
     # Create test bridge

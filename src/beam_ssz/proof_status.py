@@ -212,7 +212,7 @@ class CompleteBeamingProof:
         
         doc = []
         doc.append("=" * 80)
-        doc.append("COMPLETE MATHEMATICAL PROOF: REAL-BEAMING FEASIBILITY")
+        doc.append("CONDITIONAL PROOF-STATUS REPORT: SSZ BRIDGE CANDIDATE")
         doc.append("=" * 80)
         doc.append("")
         doc.append("MATHEMATICAL THEOREM:")

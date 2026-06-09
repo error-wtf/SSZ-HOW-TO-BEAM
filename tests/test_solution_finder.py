@@ -40,12 +40,12 @@ def test_find_minimal_energy():
         print("\n   No minimal energy config found (acceptable)")
 
 
-def test_optimize_for_human_transport():
-    """Test optimizing for human-safe transport."""
+def test_optimize_for_extended_body_proxy():
+    """Test optimizing for extended-body stress proxy configurations."""
     finder = ActualSolutionFinder()
     solutions = finder.optimize_for_human_transport()
     
-    print(f"\n   Found {len(solutions)} human-safe configurations")
+    print(f"\n   Found {len(solutions)} proxy-safe toy configurations")
     
     for sol in solutions:
         # Should have tidal < 100g

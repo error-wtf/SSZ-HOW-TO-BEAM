@@ -22,13 +22,21 @@ class TestObservableSignatures:
         """
         from beam_ssz import compute_phase_shift
         
-        # Hypothetical scenario
+        # Hypothetical scenario - LIGO-like arm
+        arm_length = 4000.0  # meters (4 km)
+        path_coords = [
+            [0.0, 0.0, np.pi/2, 0.0],
+            [0.0, arm_length, np.pi/2, 0.0],
+        ]
+        wavelength = 1.064e-6  # 1064 nm (LIGO laser)
+        
         result = compute_phase_shift(
-            arm_length=4.0,  # km (LIGO scale)
+            path_coords=path_coords,
+            wavelength=wavelength,
             xi_func=lambda r: 0.001,  # Weak field
         )
         
-        print(f"Predicted phase shift: {result.phase_shift_rad:.6f} rad")
+        print(f"Predicted phase shift: {result.phase_shift:.6f} rad")
         print(f"This is a PREDICTION - not a detection claim")
         print(f"If we built such a system, this is what we'd measure")
     
@@ -42,11 +50,12 @@ class TestObservableSignatures:
         result = compute_photon_delay(
             r_emitter=1.0,  # AU scale
             r_receiver=1.1,
+            r_s=1.0,  # Schwarzschild radius for scaling
             xi_func=lambda r: 0.01,
         )
         
-        print(f"Predicted one-way delay: {result.delay_seconds:.6e} s")
-        print(f"Predicted round-trip: {result.round_trip_delay:.6e} s")
+        print(f"Predicted one-way delay: {result.delay_one_way:.6e} s")
+        print(f"Predicted round-trip: {result.delay_round_trip:.6e} s")
         print(f"Compare to Cassini mission: ~200ns measured")
         print(f"This is a BENCHMARK prediction")
 

@@ -352,7 +352,7 @@ class BeamingProofFramework:
         summary.append("CONCLUSION:")
         
         if proven_count == 5:
-            summary.append("ALL THEOREMS PROVEN: Beaming is mathematically possible")
+            summary.append("All configured proof-status checks passed under stated assumptions; physical beaming is not proven.")
         elif proven_count >= 3:
             summary.append("PARTIAL PROOF: Core structure valid, open problems remain")
         else:
