@@ -172,6 +172,7 @@ class SSZInitialDataGenerator:
             f.attrs['constraint_violation'] = max_violation
         
         print(f"Initial data exported to {filename}")
+        return max_violation
 
 
 class SSZEvolutionParameters:
@@ -272,7 +273,7 @@ def main():
     # Generate initial data
     print("\nGenerating initial data...")
     generator = SSZInitialDataGenerator(bridge)
-    generator.export_to_hdf5('ssz_initial_data.h5')
+    ham = generator.export_to_hdf5('ssz_initial_data.h5')
     
     # Generate evolution parameters
     print("\nGenerating evolution parameters...")

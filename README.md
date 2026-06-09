@@ -1,4 +1,4 @@
-# SSZ-HOW-TO-BEAM v0.6.2
+# SSZ-HOW-TO-BEAM v0.8.0
 
 **HOW TO BEAM:** A mathematical candidate framework for testing continuous worldline transfer inside the Wrede-Casu Segmented Spacetime (SSZ) framework.
 
