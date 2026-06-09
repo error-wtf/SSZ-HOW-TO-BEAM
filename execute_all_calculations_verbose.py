@@ -25,7 +25,7 @@ def print_subsection(title):
 
 def execute_verbose_tests():
     print("╔" + "═" * 98 + "╗")
-    print("║" + " " * 25 + "SSZ-HOW-TO-BEAM v1.0.0" + " " * 51 + "║")
+    print("║" + " " * 22 + "SSZ-HOW-TO-BEAM v1.1.0-canonical" + " " * 40 + "║")
     print("║" + " " * 20 + "ULTRA VERBOSE CALCULATION OUTPUT" + " " * 42 + "║")
     print("║" + " " * 15 + "Every Formula, Every Value, Every Matrix Shown" + " " * 31 + "║")
     print("╚" + "═" * 98 + "╝")

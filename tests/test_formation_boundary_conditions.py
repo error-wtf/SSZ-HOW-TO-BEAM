@@ -93,8 +93,12 @@ class TestBoundaryConditions:
         # Should have determinant check
         assert hasattr(result, 'metric_determinant_finite')
     
-    def test_flat_metric_boundaries(self):
-        """Flat metric (Xi=0) has regular boundaries."""
+    def test_unsegmented_bridge_boundaries(self):
+        """Unsegmented bridge (Xi=0) has regular boundaries.
+        
+        NOTE: Xi=0 means no SSZ segmentation, but bridge still has 
+        geometric structure R(u). This is NOT flat Minkowski space.
+        """
         bridge = SSZBridgeMetric(
             xi_left=0.0,
             xi_right=0.0,
@@ -104,7 +108,7 @@ class TestBoundaryConditions:
         
         result = check_boundary_regularity(bridge)
         
-        # Flat metric should be regular everywhere
+        # Unsegmented bridge should have regular boundaries
         assert result.left_status == BoundaryStatus.REGULAR
         assert result.right_status == BoundaryStatus.REGULAR
         assert result.throat_status == BoundaryStatus.REGULAR

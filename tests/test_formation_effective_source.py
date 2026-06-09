@@ -90,8 +90,8 @@ class TestEffectiveSourceComputation:
         
         result = compute_effective_source(bridge, u=0.0)
         
-        # For flat metric (Xi=0), should be finite
-        # (though T_eff will be zero)
+        # For unsegmented bridge (Xi=0), should be finite
+        # Xi=0 means no SSZ segmentation, but bridge still has R(u) geometry
         assert result.diagnostics.is_finite or np.all(result.T_eff == 0)
     
     def test_scan_along_bridge(self):

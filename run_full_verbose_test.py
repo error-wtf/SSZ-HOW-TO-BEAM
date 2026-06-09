@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-SSZ-HOW-TO-BEAM v1.0.0 - FULL VERBOSE TEST
+SSZ-HOW-TO-BEAM v1.1.0-canonical - FULL VERBOSE TEST
 Maximum detail output for every module - ALL 57+ modules
 """
 
@@ -9,7 +9,7 @@ import numpy as np
 from datetime import datetime
 
 print("╔══════════════════════════════════════════════════════════════════════════════╗")
-print("║     SSZ-HOW-TO-BEAM v1.0.0 - FULL MAXIMUM DETAIL TEST                        ║")
+print("║     SSZ-HOW-TO-BEAM v1.1.0-canonical - FULL MAXIMUM DETAIL TEST                        ║")
 print("║           All Modules - Real Values - Full Verbose Output                    ║")
 print("╚══════════════════════════════════════════════════════════════════════════════╝")
 print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -295,7 +295,7 @@ if results['failed']:
         print(f"  ❌ {name}: {error}")
 print(f"\n{'='*80}")
 if len(results['failed']) == 0:
-    print("✅ ALL MODULES PASSED - 100% PERFECT")
+    print("✅ ALL MODULES PASSED - Framework tests successful (physics incomplete)
 else:
     success_rate = len(results['passed']) / total * 100
     print(f"⚠️  Success Rate: {success_rate:.1f}%")

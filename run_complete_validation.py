@@ -29,7 +29,7 @@ def execute_complete_validation():
     """Execute EVERYTHING."""
     
     print("╔" + "═" * 98 + "╗")
-    print("║" + " " * 25 + "SSZ-HOW-TO-BEAM v1.0.0" + " " * 51 + "║")
+    print("║" + " " * 25 + "SSZ-HOW-TO-BEAM v1.1.0-canonical" + " " * 51 + "║")
     print("║" + " " * 20 + "COMPLETE VALIDATION EXECUTION" + " " * 45 + "║")
     print("║" + " " * 30 + "Everything Actually Runs" + " " * 40 + "║")
     print("╚" + "═" * 98 + "╝")

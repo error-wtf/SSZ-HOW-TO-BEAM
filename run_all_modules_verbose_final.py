@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-SSZ-HOW-TO-BEAM v1.0.0 - ALL 57+ MODULES VERBOSE TEST
+SSZ-HOW-TO-BEAM v1.1.0-canonical - ALL 57+ MODULES VERBOSE TEST
 Maximum detail for EVERY SINGLE MODULE
 Real values, formulas, calculations, verifications
+Canonical SSZ: Xi_horizon = 0.801711847
 """
 
 import sys
@@ -10,8 +11,8 @@ import numpy as np
 from datetime import datetime
 
 print("╔══════════════════════════════════════════════════════════════════════════════╗")
-print("║     SSZ-HOW-TO-BEAM v1.0.0 - ALL 57 MODULES MAXIMUM DETAIL TEST              ║")
-print("║           Real Values - All Formulas - All Calculations - 100% Verbose     ║")
+print("║     SSZ-HOW-TO-BEAM v1.1.0-canonical - ALL 57 MODULES MAXIMUM DETAIL TEST   ║")
+print("║           Real Values - All Formulas - All Calculations - Framework Tests  ║")
 print("╚══════════════════════════════════════════════════════════════════════════════╝")
 print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 print()

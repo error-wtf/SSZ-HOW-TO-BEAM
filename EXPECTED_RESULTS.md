@@ -32,7 +32,7 @@ Generating report...
 [INFO] Report saved to: FULL_REPORT.md
 
 ================================================================================
-✅ ALL TESTS PASSED - v1.0.0 IS READY
+✅ ALL TESTS PASSED - v1.1.0-canonical FRAMEWORK READY
 ================================================================================
 
 Full report saved to: FULL_REPORT.md

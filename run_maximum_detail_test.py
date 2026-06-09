@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-SSZ-HOW-TO-BEAM v1.0.0 - MAXIMUM DETAIL TEST
+SSZ-HOW-TO-BEAM v1.1.0-canonical - MAXIMUM DETAIL TEST
 Shows real values and detailed calculations for every module
+Canonical SSZ formulas: Xi_horizon = 0.8017
 """
 
 import sys
@@ -9,7 +10,7 @@ import numpy as np
 from datetime import datetime
 
 print("╔══════════════════════════════════════════════════════════════════════════════╗")
-print("║     SSZ-HOW-TO-BEAM v1.0.0 - MAXIMUM DETAIL MODULE TEST                      ║")
+print("║     SSZ-HOW-TO-BEAM v1.1.0-canonical - MAXIMUM DETAIL MODULE TEST            ║")
 print("║           Real Values - Real Calculations - All Modules                        ║")
 print("╚══════════════════════════════════════════════════════════════════════════════╝")
 print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -167,7 +168,7 @@ if results['failed']:
         print(f"  ❌ {name}: {error}")
 print(f"\n{'='*80}")
 if len(results['failed']) == 0:
-    print("✅ ALL MODULES PASSED - 100% PERFECT WITH MAXIMUM DETAIL")
+    print("✅ ALL MODULES PASSED - Framework detail tests successful (physics incomplete)")
 else:
     success_rate = len(results['passed']) / (len(results['passed']) + len(results['failed'])) * 100
     print(f"⚠️  Success Rate: {success_rate:.1f}%")

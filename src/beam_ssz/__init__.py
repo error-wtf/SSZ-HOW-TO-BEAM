@@ -1,7 +1,7 @@
-"""SSZ-HOW-TO-BEAM v1.0.0 research framework.
+"""SSZ-HOW-TO-BEAM v1.1.0-canonical research framework.
 
 SSZ continuous-worldline bridge model with strict no-copy constraint.
-Release-quality mathematical/numerical candidate framework.
+Canonical SSZ formulas: Xi_horizon = 0.801711847, D_horizon = 0.555027709
 
 Primary model: CONTINUOUS_WORLDLINE_BRIDGE
 Not: destructive scan / copy reconstruction / pattern buffer identity.
@@ -42,7 +42,7 @@ from .formation import (
     FormationStatus,
 )
 
-# v0.6 bridge metric
+# Bridge metric (canonical since v1.1.0)
 from .bridge_metric import SSZBridgeMetric, create_canonical_bridge, evaluate_bridge_candidate
 
 # Bridge & Search
@@ -163,7 +163,7 @@ __version__ = "1.1.0"
 
 __all__ = [
     "__version__",
-    # Core v0.4/v0.6
+    # Core SSZ modules
     "evaluate_xi_x",
     "evaluate_d_s_x",
     "SSZMetric",

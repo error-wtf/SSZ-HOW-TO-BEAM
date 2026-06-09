@@ -1,6 +1,7 @@
-# SSZ-HOW-TO-BEAM v1.0.0 - Complete Knowledge Base
+# SSZ-HOW-TO-BEAM v1.1.0-canonical - Complete Knowledge Base
 
-**The definitive reference for everything known, unknown, and knowable about SSZ continuous-worldline bridges.**
+**The definitive reference for SSZ continuous-worldline bridges.**
+**Status:** Mathematical framework validated, physical formation incomplete.
 
 ---
 
@@ -547,7 +548,7 @@ Everything in "Unknown" is a potential research direction.
 
 ---
 
-**Document Status:** v1.0.0 Complete Knowledge Base  
+**Document Status:** v1.1.0-canonical Knowledge Base  
 **Last Updated:** 2026-06-09  
 **Confidence:** Algebraic: High | Physical: Low | Biological: None | Experimental: None
 

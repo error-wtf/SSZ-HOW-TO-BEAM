@@ -1,8 +1,22 @@
-# SSZ-HOW-TO-BEAM v1.0.0
+# SSZ-HOW-TO-BEAM v1.1.0-canonical
 
 **Mathematical Research Framework for Segmented Spacetime Bridge Metrics**
 
 A testable scaffold for exploring continuous-worldline bridge candidates in exotic metrics. This is a research tool for theoretical exploration—not a claim of physical beaming feasibility.
+
+### What This Project Is (And Isn't)
+
+**This is NOT a "teleporter" or a finished end theory.** It is a deliberate intermediate step—a consciously fictional extreme case used to test the last remaining gaps in the Segmented Spacetime (SSZ) metric.
+
+Think of this as a mathematical stress test: We take an artificial, almost science-fiction-like scenario—a bridge metric for "beaming"—not because we claim to beam people tomorrow, but because such an extreme case ruthlessly exposes any flaws in the metric mathematics. If the SSZ metric remains clean even in this difficult edge case—hiding no coordinate errors, using no circular calculations, and concealing no mathematical gaps—then it is far more robust.
+
+This repository served as a critical test: It helped identify a final coordinate error where the bridge coordinate `u` was still being treated as a normal radius at one point. This would have created artificial singularities or false zero curvature. The error was identified, corrected, and afterward the calculation showed real, finite, non-trivial curvature. This is an important step.
+
+**The larger goal:** A complete SSZ metric that closes gaps between different domains: from photons and light travel times through gravity, redshift, strong fields, neutron stars, to connection points toward quantum physics. Many great theories are extremely strong and self-contained within their own domains: General Relativity for gravity and spacetime, quantum physics for small scales, other models for other domains. But between these domains remain breaks, transitions, and open questions. This is where SSZ aims to connect.
+
+This repository is therefore like a load test for the metric. It does NOT say "beaming is proven." It says: "We used an extreme fictional edge case to test the mathematics of SSZ bridge, curvature, and source structure." And this test helped make the metric cleaner.
+
+**The ultimate ambition:** Build a metric that is more seamless than previous separate theoretical structures, one that describes gravity, segmentation, light, strong fields, and transitions to quantum physics in a common framework—without fitting, without circular reasoning, and with predictions that must withstand real observational data.
 
 ---
 

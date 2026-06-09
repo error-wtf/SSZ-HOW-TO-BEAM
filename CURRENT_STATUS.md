@@ -248,28 +248,29 @@ Don't expect human teleportation this century. The energy and formation requirem
 
 ---
 
-## v1.0.0 Perfection Status
+## v1.1.0-canonical Framework Status
 
-### ✅ 100% Complete Components
+### ✅ Framework Components (Smoke Tests Pass)
 
 | Module | Implementation | Tests | Documentation | Status |
 |--------|---------------|-------|---------------|--------|
-| SSZ Core | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
-| Claim Gates | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
-| Tensor Core | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
-| Observables | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
-| Numerical GR | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
-| Energy Proxy/Tensor | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
-| CI/CD | ✅ Complete | ✅ Pass | ✅ Complete | **PERFECT** |
+| SSZ Core | ✅ Complete | ✅ Pass | ✅ Complete | **TESTED** |
+| Claim Gates | ✅ Complete | ✅ Pass | ✅ Complete | **TESTED** |
+| Tensor Core | ✅ Complete | ✅ Pass | ✅ Complete | **TESTED** |
+| Observables | ✅ Complete | ✅ Pass | ✅ Complete | **TESTED** |
+| Numerical GR | ⚠️ Scaffold | ✅ Pass | ✅ Complete | **SCAFFOLD** |
+| Energy Proxy/Tensor | ✅ Complete | ✅ Pass | ✅ Complete | **TESTED** |
+| CI/CD | ✅ Complete | ✅ Pass | ✅ Complete | **TESTED** |
 
-### 📊 Test Coverage: 100%
+### 📊 Test Coverage: Framework Validated
 
 - **Total Tests:** 335+
-- **Pass Rate:** 100% (excluding inherited v0.8 smoke timeout)
+- **Pass Rate:** All framework tests passing (physics incomplete)
 - **Core Tests:** All passing
 - **SSZ Tests:** All passing
 - **Tensor Tests:** All passing
 - **Claim Tests:** All passing
+- **Physics Validation:** NOT COMPLETE (intentionally)
 
 ### 🔒 Security: Perfect
 
@@ -294,8 +295,8 @@ Don't expect human teleportation this century. The energy and formation requirem
 If referencing this work:
 
 ```
-SSZ-HOW-TO-BEAM v1.0.0: A release-quality mathematical/numerical 
-candidate framework for SSZ continuous-worldline bridge metrics.
+SSZ-HOW-TO-BEAM v1.1.0-canonical: A mathematical/numerical 
+framework for SSZ continuous-worldline bridge metrics (physics incomplete).
 
 Core Principle:
 BEAM-SSZ treats a person as a continuous worldline whose effective 
