@@ -19,8 +19,10 @@ class TestCanonicalXi:
     """Test canonical SSZ Xi formulas."""
     
     def test_phi_constant(self):
-        """PHI is correct SSZ scaling constant."""
-        assert PHI == 0.20898764024997873
+        """PHI is Golden Ratio (1+sqrt(5))/2."""
+        expected_phi = (1.0 + np.sqrt(5.0)) / 2.0
+        assert abs(PHI - expected_phi) < 1e-15
+        assert abs(PHI - 1.618033988749895) < 1e-15
     
     def test_xi_horizon_value(self):
         """Xi at horizon is canonical value (not 1!)."""

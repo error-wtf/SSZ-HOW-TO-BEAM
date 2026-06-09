@@ -43,7 +43,7 @@ def verbose_test(name, test_func):
 def test_xi_from_radius():
     from beam_ssz import xi_from_radius
     print("┌─ INPUT ────────────────────────────────────────────────────────────────────┐")
-    print("│ Formula: Xi = PHI × (r_s/r)  where PHI = 0.20898764024997873")
+    print("│ Formula: Xi = PHI × (r_s/r)  where PHI = 1.618033988749895")
     radii = [1.0, 10.0, 100.0, 1000.0, 10000.0]
     print(f"│ Test radii: {radii}")
     print("└───────────────────────────────────────────────────────────────────────────┘")
@@ -52,7 +52,7 @@ def test_xi_from_radius():
     for r in radii:
         xi = xi_from_radius(r)
         xi_vals.append(xi)
-        expected = 0.20898764024997873 / r
+        expected = 1.618033988749895 / r
         print(f"│ r = {r:>6.1f} → Xi = {xi:.16f} (expected: {expected:.16f})")
     print("└───────────────────────────────────────────────────────────────────────────┘")
     print("\n┌─ VERIFICATION ───────────────────────────────────────────────────────────┐")
@@ -64,7 +64,7 @@ def test_xi_from_radius():
     print(f"│ Ratio test: Xi(1)/Xi(10) = {xi_vals[0]/xi_vals[1]:.2f} (expected 10.0)")
     print(f"│ Ratio test: Xi(10)/Xi(100) = {xi_vals[1]/xi_vals[2]:.2f} (expected 10.0)")
     print("└───────────────────────────────────────────────────────────────────────────┘")
-    assert xi_vals[0] == 0.20898764024997873
+    assert xi_vals[0] == 1.618033988749895
     return f"Xi = [{', '.join([f'{x:.6f}' for x in xi_vals])}]"
 
 def test_d_ssz_from_xi():

@@ -171,8 +171,10 @@ class TestTimeDelayShapiro:
             xi_func=lambda r: 0.1,
         )
         
-        # Xi = r_s/r = 0.1 → MODERATE regime (0.1 <= Xi < 1.0)
-        assert result.regime == "MODERATE"
+        # Canonical regime classification uses r/r_s:
+        # r/r_s = 10.0 → STRONG regime (3.0–10.0)
+        # Note: Old Xi-based classification gave MODERATE, but canonical uses r/r_s
+        assert result.regime == "STRONG"
 
 
 class TestPhaseShiftCalculation:

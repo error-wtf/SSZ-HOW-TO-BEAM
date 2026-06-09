@@ -56,9 +56,9 @@ def test_xi_from_radius():
     for r in radii:
         xi = xi_from_radius(r)
         xi_values.append(xi)
-        formula_check = 0.20898764024997873 / r  # PHI value
+        formula_check = 1.618033988749895 / r  # PHI value
         print(f"│ r = {r:>10.1f} m")
-        print(f"│   Xi = PHI / r = 0.20898764024997873 / {r} = {xi:.16f}")
+        print(f"│   Xi = PHI / r = 1.618033988749895 / {r} = {xi:.16f}")
         print(f"│   Formula verification: {formula_check:.16f}")
         print(f"│   Match: {'✓' if abs(xi - formula_check) < 1e-10 else '✗'}")
         print("│")
@@ -75,7 +75,7 @@ def test_xi_from_radius():
     print(f"│ Ratio test: Xi(10)/Xi(100) = {xi_values[1]/xi_values[2]:.2f} (expected 10.0)")
     print("└─────────────────────────────────────────────────────────────────────────────┘")
     
-    assert xi_values[0] == 0.20898764024997873, f"Xi(1.0) should be PHI, got {xi_values[0]}"
+    assert xi_values[0] == 1.618033988749895, f"Xi(1.0) should be PHI, got {xi_values[0]}"
     assert abs(xi_values[1] - 0.020898764024997873) < 1e-15
     
     return f"Xi values: {[f'{x:.6f}' for x in xi_values]}"

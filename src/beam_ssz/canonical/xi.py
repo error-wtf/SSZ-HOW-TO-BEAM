@@ -15,9 +15,10 @@ Horizon values:
 import numpy as np
 from typing import Union, Literal
 
-# SSZ scaling constant φ
-# Derived from geometric series convergence in SSZ segmentation
-PHI = 0.20898764024997873
+# SSZ scaling constant φ = Golden Ratio
+# φ = (1 + √5) / 2 ≈ 1.618033988749895
+# Used in canonical strong branch: Ξ_strong(r) = 1 - exp(-φ * r_s / r)
+PHI = (1.0 + np.sqrt(5.0)) / 2.0  # = 1.618033988749895...
 
 # Canonical horizon values (NOT Ξ=1!)
 XI_HORIZON = 1.0 - np.exp(-PHI)  # ≈ 0.801711847...

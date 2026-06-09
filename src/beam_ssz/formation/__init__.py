@@ -36,6 +36,7 @@ from .energy_budget import (
 )
 from .boundary_conditions import (
     check_boundary_regularity,
+    check_asymptotic_behavior,
     BoundaryStatus,
 )
 from .formation_report import (
@@ -43,17 +44,30 @@ from .formation_report import (
     FormationStatus,
 )
 
+# Import scan function from effective_source
+from .effective_source import (
+    scan_effective_source_along_bridge,
+)
+
+# Import sensitivity analysis from energy_budget
+from .energy_budget import (
+    energy_budget_sensitivity_analysis,
+)
+
 __all__ = [
     # Effective source
     "compute_effective_source",
+    "scan_effective_source_along_bridge",
     "EffectiveSourceResult",
     "SourceDiagnostics",
     # Energy budget
     "compute_energy_budget",
+    "energy_budget_sensitivity_analysis",
     "EnergyBudgetResult",
     "SourceLocalization",
     # Boundary conditions
     "check_boundary_regularity",
+    "check_asymptotic_behavior",
     "BoundaryStatus",
     # Formation report
     "generate_formation_report",
