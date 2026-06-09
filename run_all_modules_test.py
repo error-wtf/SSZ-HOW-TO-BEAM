@@ -501,12 +501,13 @@ def test_formation_boundary():
     from beam_ssz import SSZBridgeMetric, check_boundary_regularity
     bridge = SSZBridgeMetric(xi_left=0.1, xi_right=0.1, lambda_bridge=0.1, ell0=10.0)
     boundary = check_boundary_regularity(bridge)
-    print(f"    Boundary check: left={boundary.left_endpoint_regular}, right={boundary.right_endpoint_regular}")
-    # Note: Formation is a research problem - boundary may not be fully regular
-    # We only check that the function runs without error
+    print(f"    Boundary check: left={boundary.left_endpoint_regular}, right={boundary.right_endpoint_regular}, throat={boundary.throat_regular}")
+    # Check that boundary check completes and returns valid results
     assert boundary.left_status is not None
     assert boundary.right_status is not None
     assert boundary.throat_status is not None
+    # At minimum, metric determinant should be finite
+    assert boundary.metric_determinant_finite
 
 def test_formation_report():
     from beam_ssz import SSZBridgeMetric, generate_formation_report
