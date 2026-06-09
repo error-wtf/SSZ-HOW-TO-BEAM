@@ -14,8 +14,17 @@ from .status import WorldlineStatus, SSZValidationStatus
 @dataclass
 class WorldlineSample:
     """Single sample along worldline."""
-    tau: float  # Worldline parameter (must be monotonic)
-    x: np.ndarray  # Coordinates [t, r, theta, phi]
+    tau: float = 0.0  # Worldline parameter (must be monotonic)
+    x: np.ndarray = None  # Coordinates [t, r, theta, phi]
+    # Also accept individual coordinates for convenience
+    t: float = 0.0
+    r: float = 1.0
+    theta: float = 0.0
+    phi: float = 0.0
+    
+    def __post_init__(self):
+        if self.x is None:
+            self.x = np.array([self.t, self.r, self.theta, self.phi])
 
 
 @dataclass
@@ -26,6 +35,11 @@ class WorldlineResult:
     max_jump: float
     d_tau_positive: bool
     details: Dict
+    
+    @property
+    def continuous(self) -> bool:
+        """Check if worldline is continuous."""
+        return self.tau_monotonic and self.d_tau_positive and self.max_jump < 100.0
 
 
 def validate_worldline_continuity(

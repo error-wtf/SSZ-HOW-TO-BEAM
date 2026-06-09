@@ -165,3 +165,20 @@ def evaluate_experimental_by_name(
     
     func, status = EXPERIMENTAL_FORMULAS[formula_name]
     return compare_against_canonical(x, func, formula_name, status)
+
+
+def experimental_xi_scan(x_range: list, formula_name: str = "canonical") -> list:
+    """Scan experimental Xi formulas over a range.
+    
+    Args:
+        x_range: List of dimensionless radii
+        formula_name: Name of formula to use
+        
+    Returns:
+        List of ExperimentalXiResult
+    """
+    results = []
+    for x in x_range:
+        result = evaluate_experimental_formula(x, formula_name)
+        results.append(result)
+    return results

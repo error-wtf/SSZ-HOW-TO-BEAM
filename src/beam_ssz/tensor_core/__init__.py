@@ -24,7 +24,8 @@ from .einstein import compute_einstein
 from .stress_energy import compute_stress_energy
 from .null_vectors import generate_null_vectors
 from .energy_conditions import check_nec, check_wec
-from .validation import validate_tensor_finite
+from .validation import validate_tensor_finite, validate_metric_complete
+from .regime import classify_regime, Regime
 
 __all__ = [
     "CoordinateIndex",
@@ -47,4 +48,7 @@ __all__ = [
     "check_nec",
     "check_wec",
     "validate_tensor_finite",
+    "validate_metric_complete",
+    "classify_regime",
+    "Regime",
 ]

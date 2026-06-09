@@ -139,3 +139,7 @@ def compute_phase_shift(
             xi_right=xi_func(path_coords[-1][1]),
             path_points=len(path_coords),
         )
+
+
+# Convenience alias for testing
+phase_shift = compute_phase_shift

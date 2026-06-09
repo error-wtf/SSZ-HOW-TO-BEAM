@@ -30,37 +30,45 @@ if errorlevel 1 (
 echo [ok] Python version check passed
 echo.
 
-REM Check for virtual environment
-if "%VIRTUAL_ENV%"=="" (
-    echo Note: Not in a virtual environment.
-    echo Recommended: Create a venv first:
-    echo   python -m venv .venv
-    echo   .venv\Scripts\activate
+REM Check for virtual environment directory, create one if not exists
+if not exist ".venv" (
+    echo Creating virtual environment...
+    python -m venv .venv
+    echo [ok] Virtual environment created in .venv\
     echo.
-    set /p CONTINUE="Continue anyway? [y/N] "
-    if /I not "%CONTINUE%"=="y" exit /b 1
 )
+
+REM ALWAYS use venv paths
+set "VENV_PIP=.venv\Scripts\pip"
+set "VENV_PYTHON=.venv\Scripts\python"
+
+REM Upgrade pip in venv
+echo Upgrading pip...
+%VENV_PIP% install --upgrade pip
 
 REM Installation mode
 if "%1"=="--dev" (
+    echo.
     echo Installing in DEVELOPMENT mode...
-    pip install -r requirements-dev.txt
-    pip install -e .
+    %VENV_PIP% install -r requirements-dev.txt
+    %VENV_PIP% install -e .
     echo.
     echo [ok] Development installation complete
     echo   Includes: pytest, black, ruff, mypy, sphinx
 ) else if "%1"=="--all" (
+    echo.
     echo Installing with ALL optional dependencies...
-    pip install -r requirements.txt
-    pip install h5py sympy matplotlib
-    pip install -e .
+    %VENV_PIP% install -r requirements.txt
+    %VENV_PIP% install h5py sympy matplotlib
+    %VENV_PIP% install -e .
     echo.
     echo [ok] Full installation complete
     echo   Includes: h5py, sympy, matplotlib
 ) else (
+    echo.
     echo Installing CORE dependencies only...
-    pip install -r requirements.txt
-    pip install -e .
+    %VENV_PIP% install -r requirements.txt
+    %VENV_PIP% install -e .
     echo.
     echo [ok] Core installation complete
     echo   For full features, run: install.bat --all
@@ -72,16 +80,17 @@ echo Testing installation...
 echo ==================================
 echo.
 
-REM Test import
-python -c "import beam_ssz; print(f'Version: {beam_ssz.__version__}')"
+REM Test import using venv python
+%VENV_PYTHON% -c "import beam_ssz; print(f'Version: {beam_ssz.__version__}')"
 
 if %errorlevel%==0 (
     echo.
     echo [ok] Installation successful!
     echo.
     echo Quick start:
+    echo   .venv\Scripts\activate
     echo   python -c "import beam_ssz; print(beam_ssz.__version__)"
-    echo   python -m pytest tests/ -q
+    echo   python run_complete_validation.py
     echo.
 ) else (
     echo.

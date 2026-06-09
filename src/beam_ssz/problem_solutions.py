@@ -425,3 +425,7 @@ if __name__ == "__main__":
     print(f"Tested: {tested_solutions}/{total_solutions}")
     print(f"Ready for implementation: {sum(1 for sols in all_solutions.values() for s in sols if s.technical_readiness >= 8)}")
     print("=" * 80)
+
+
+# Convenience alias for testing
+ProblemSolutions = ProblemSolver

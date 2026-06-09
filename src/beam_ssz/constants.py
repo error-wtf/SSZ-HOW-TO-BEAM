@@ -18,3 +18,20 @@ X_BLEND_MAX: float = 2.2
 X_WEAK_MIN: float = 2.2
 X_PHOTON_SPHERE_MAX: float = 3.0
 X_STRONG_PHYSICAL_MAX: float = 10.0
+
+# SSZ constants dictionary for easy access
+SSZ_CONSTANTS = {
+    "PHI": PHI,
+    "XI_RS": XI_RS,
+    "D_RS": D_RS,
+    "C": C,
+    "G": G,
+    "HBAR": HBAR,
+    "K_B": K_B,
+    "X_STRONG_MAX": X_STRONG_MAX,
+    "X_BLEND_MIN": X_BLEND_MIN,
+    "X_BLEND_MAX": X_BLEND_MAX,
+    "X_WEAK_MIN": X_WEAK_MIN,
+    "X_PHOTON_SPHERE_MAX": X_PHOTON_SPHERE_MAX,
+    "X_STRONG_PHYSICAL_MAX": X_STRONG_PHYSICAL_MAX,
+}

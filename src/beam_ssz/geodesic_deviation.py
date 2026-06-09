@@ -31,3 +31,28 @@ def radial_tidal_acceleration_proxy(x: float, separation: float, *, r_s: float =
     if not isfinite(value):
         raise ArithmeticError("non-finite tidal proxy")
     return value
+
+
+def geodesic_deviation(x1: float, x2: float, separation: float, *, r_s: float = 1.0) -> dict:
+    """Calculate geodesic deviation between two nearby geodesics.
+    
+    Args:
+        x1: Dimensionless radius at point 1
+        x2: Dimensionless radius at point 2
+        separation: Separation between geodesics
+        r_s: Schwarzschild radius
+        
+    Returns:
+        Dict with deviation metrics
+    """
+    kappa1 = radial_curvature_proxy(x1, r_s=r_s)
+    kappa2 = radial_curvature_proxy(x2, r_s=r_s)
+    
+    return {
+        "kappa_1": kappa1,
+        "kappa_2": kappa2,
+        "delta_kappa": kappa2 - kappa1,
+        "tidal_acceleration_1": radial_tidal_acceleration_proxy(x1, separation, r_s=r_s),
+        "tidal_acceleration_2": radial_tidal_acceleration_proxy(x2, separation, r_s=r_s),
+        "separation": separation,
+    }

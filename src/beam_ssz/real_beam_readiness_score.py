@@ -323,3 +323,23 @@ class RealBeamReadinessScorer:
                 "tidal_status": 1.0,
                 "reproducibility_level": 1.0,
             }
+
+
+# Convenience function for testing
+def calculate_readiness(**kwargs) -> dict:
+    """Calculate readiness score for SSZ framework.
+    
+    Args:
+        **kwargs: Readiness parameters
+        
+    Returns:
+        Readiness assessment dict
+    """
+    scorer = RealBeamReadinessScorer()
+    report = scorer.assess_readiness(**kwargs)
+    return {
+        "level": report.overall_level.value,
+        "axes": {name: axis.score for name, axis in report.axes.items()},
+        "blockers": list(report.blockers),
+        "summary": report.summary,
+    }

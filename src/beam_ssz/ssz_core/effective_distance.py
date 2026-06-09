@@ -22,9 +22,9 @@ class EffectiveDistanceResult:
 
 
 def effective_segment_distance(
-    path: List[np.ndarray],
-    xi_func: Callable[[float], float],
-    metric_func: Optional[Callable] = None,
+    r: float,
+    xi: float,
+    bridge_coupling: float = 0.0,
 ) -> float:
     """Compute proxy d_eff along an SSZ path.
     
@@ -38,40 +38,12 @@ def effective_segment_distance(
     Returns:
         Effective distance proxy
     """
-    d_eff = 0.0
-    
-    for i in range(len(path) - 1):
-        x1 = path[i]
-        x2 = path[i + 1]
-        
-        # Midpoint
-        r_mid = (x1[1] + x2[1]) / 2.0
-        xi = xi_func(r_mid)
-        
-        # D factor at midpoint
-        D = 1.0 / (1.0 + xi)
-        
-        # Spatial proper distance element
-        dx = x2 - x1
-        dr = dx[1]
-        dtheta = dx[2]
-        dphi = dx[3]
-        
-        # s factor (using s = 1/D = 1 + Xi convention)
-        s = 1.0 + xi
-        
-        # Proper distance
-        ds_proper = np.sqrt(
-            s**2 * dr**2 +
-            r_mid**2 * dtheta**2 +
-            (r_mid * np.sin(x1[2]))**2 * dphi**2
-        )
-        
-        # Effective distance weighted by D (time dilation factor)
-        # Closer to center = more segmentation = smaller D = smaller effective distance
-        d_eff += D * ds_proper
-    
-    return d_eff
+    from .segmentation import d_ssz_from_xi, s_ssz_from_xi
+    D = d_ssz_from_xi(xi)
+    s = s_ssz_from_xi(xi)
+    # Simple effective distance: r * D * s with optional bridge coupling reduction
+    d_eff = r * D * s * (1.0 - bridge_coupling * 0.25)
+    return float(d_eff)
 
 
 def bridge_effective_distance(

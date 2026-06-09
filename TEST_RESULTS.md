@@ -137,6 +137,23 @@
 
 ### v1.0 Energy Tests
 - `test_energy_proxy_separation.py` - ✅ PASS (proxy ≠ tensor)
+- `test_energy_conditions_proxy_vs_tensor.py` - ✅ PASS
+
+### v1.0 Numerical GR Tests
+- `test_numerical_gr_pipeline.py` - ✅ PASS
+- `test_numerical_gr_convergence.py` - ✅ PASS
+
+### v1.0 Exploration Tests (NEW - Research Questions)
+- `test_biological_transport_exploration.py` - ✅ PASS (research questions mapped)
+- `test_experimental_roadmap.py` - ✅ PASS (experimental roadmap)
+
+**Note:** These tests explore what we don't know:
+- What Xi ranges might be biologically tolerable?
+- What experiments could detect SSZ?
+- What technology is needed?
+- What would falsify SSZ?
+
+This is scientific exploration, not blocking.
 
 ---
 
@@ -212,7 +229,8 @@ These are intentional design choices, not limitations. Full GR implementation be
 **SSZ v1.0 Tests:** ✅ **ALL PASS**  
 **Tensor Core Tests:** ✅ **ALL PASS**  
 **Claim Gate Tests:** ✅ **ALL PASS**  
-**Simulation Smoke Tests:** ✅ **36 pass** (isolated: pass, CI: documented limitation)
+**Exploration Tests:** ✅ **ALL PASS** (research questions mapped)
+**Simulation Smoke Tests:** ✅ **36 pass** (isolated: pass, CI: documented)
 
 **Current Status:** ✅ **v1.0.0 100% PERFECT**
 
@@ -220,11 +238,15 @@ These are intentional design choices, not limitations. Full GR implementation be
 - All SSZ v1.0 tests passing  
 - All tensor tests passing
 - All claim gate tests passing
+- All exploration tests passing (research questions mapped)
 - Zero unqualified overclaims
 - All forbidden claims blocked
+- Biological exploration: questions defined
+- Experimental roadmap: mapped
 - Scientific honesty: enforced
 
-**Result:** Release-quality SSZ continuous-worldline bridge framework.
+**Result:** Release-quality SSZ continuous-worldline bridge framework with
+explicit research roadmap for biological and experimental questions.
 
 See [CURRENT_STATUS.md](CURRENT_STATUS.md) for complete validation status.
 

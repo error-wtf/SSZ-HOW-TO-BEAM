@@ -506,5 +506,32 @@ class MitigationStrategyExplorer:
         )
 
 
+# Convenience function for testing
+def mitigation_strategy(problem_type="formation", **kwargs) -> dict:
+    """Get mitigation strategy for a problem.
+    
+    Args:
+        problem_type: "formation" or "energy"
+        **kwargs: Strategy parameters
+        
+    Returns:
+        Strategy dict
+    """
+    solver = FinalProblemSolver()
+    
+    if problem_type == "formation":
+        solutions = solver.solve_formation_problem()
+    elif problem_type == "energy":
+        solutions = solver.solve_energy_source_problem()
+    else:
+        return {"error": f"Unknown problem type: {problem_type}"}
+    
+    return {
+        "problem_type": problem_type,
+        "num_solutions": len(solutions),
+        "solutions": [{"name": s.name, "mechanism": s.mechanism} for s in solutions[:3]],
+    }
+
+
 if __name__ == "__main__":
     print_final_solutions()

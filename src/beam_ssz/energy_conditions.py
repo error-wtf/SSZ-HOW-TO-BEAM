@@ -43,3 +43,34 @@ def classify_energy_conditions(
     if sec_satisfied is False:
         notes.append("SEC violation can be SSZ-compatible in strong field; NEC remains the hard line.")
     return EnergyConditionReport(CandidateClass.SSZ_CANONICAL, True, sec_satisfied, False, tuple(notes))
+
+
+def check_energy_conditions(xi: float, energy_density: float = 1.0, pressure: float = 0.0) -> dict:
+    """Check energy conditions for SSZ metric.
+    
+    Args:
+        xi: SSZ parameter
+        energy_density: Energy density rho
+        pressure: Pressure p
+        
+    Returns:
+        Dict with energy condition checks
+    """
+    # NEC: rho + p >= 0
+    nec = energy_density + pressure >= 0
+    # WEC: rho >= 0 and NEC
+    wec = energy_density >= 0 and nec
+    # SEC: rho + 3p >= 0 and WEC
+    sec = energy_density + 3*pressure >= 0 and wec
+    # DEC: |p| <= rho and WEC
+    dec = abs(pressure) <= energy_density and wec
+    
+    return {
+        "nec_satisfied": nec,
+        "wec_satisfied": wec,
+        "sec_satisfied": sec,
+        "dec_satisfied": dec,
+        "xi": xi,
+        "rho": energy_density,
+        "p": pressure,
+    }

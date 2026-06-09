@@ -229,6 +229,19 @@ class NoGoFilters:
         )
     
     @staticmethod
+    def apply_no_go_filters(candidate=None, **kwargs) -> list:
+        """Apply all no-go filters to a candidate.
+        
+        Args:
+            candidate: Bridge candidate to check
+            **kwargs: Additional parameters
+            
+        Returns:
+            List of NoGoFilterReport
+        """
+        return NoGoFilters.run_all_filters(**kwargs)
+    
+    @staticmethod
     def run_all_filters(
         scan_copy_model: bool = False,
         unknown_quantum_state_copy: bool = False,
@@ -285,3 +298,17 @@ class NoGoFilters:
         if any(r.result == NoGoFilterResult.WARNING for r in reports):
             return NoGoFilterResult.WARNING
         return NoGoFilterResult.PASS
+
+
+# Module-level convenience function
+def apply_no_go_filters(candidate=None, **kwargs) -> list:
+    """Apply all no-go filters to a candidate.
+    
+    Args:
+        candidate: Bridge candidate to check
+        **kwargs: Additional parameters
+        
+    Returns:
+        List of NoGoFilterReport
+    """
+    return NoGoFilters.run_all_filters(**kwargs)

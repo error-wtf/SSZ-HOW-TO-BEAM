@@ -40,3 +40,16 @@ def coordinate_distance_x(x1: float, x2: float, *, r_s: float = 1.0) -> float:
 def segmentation_excess_x(x1: float, x2: float, *, r_s: float = 1.0, steps: int = 2048) -> float:
     """Return ∫(s-1)dr = ∫Xi dr, the excess segmented radial distance."""
     return rho_between_x(x1, x2, r_s=r_s, steps=steps) - coordinate_distance_x(x1, x2, r_s=r_s)
+
+
+def radial_scale_factor(x: float, r_s: float = 1.0) -> float:
+    """Calculate radial scale factor at dimensionless radius x.
+    
+    Args:
+        x: Dimensionless radius r/r_s
+        r_s: Schwarzschild radius
+        
+    Returns:
+        Scale factor s(x)
+    """
+    return s_of_x(x)

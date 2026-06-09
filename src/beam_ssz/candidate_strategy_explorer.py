@@ -417,6 +417,36 @@ class StrategyExplorer:
         return solver.find_the_ultimate_solution(verbose=verbose)
 
 
+# Convenience function for testing
+def explore_strategies(strategy_type="all", **kwargs) -> dict:
+    """Explore different strategies.
+    
+    Args:
+        strategy_type: Type of strategy to explore
+        **kwargs: Strategy parameters
+        
+    Returns:
+        Strategy dict
+    """
+    explorer = StrategyExplorer()
+    
+    if strategy_type == "extreme":
+        result = explorer.explore_extreme_parameters()
+    elif strategy_type == "gradual":
+        result = explorer.explore_gradual_transfer()
+    elif strategy_type == "robotic":
+        result = explorer.explore_robotic_only()
+    elif strategy_type == "hybrid":
+        result = explorer.explore_hybrid()
+    else:
+        result = explorer.find_best_strategy()
+    
+    return {
+        "strategy_type": strategy_type,
+        "result": result,
+    }
+
+
 if __name__ == "__main__":
     solver = UltimateProblemSolver()
     ultimate = solver.find_the_ultimate_solution(verbose=True)

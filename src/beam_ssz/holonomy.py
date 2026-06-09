@@ -60,3 +60,27 @@ def edge_modulated_loop_invariant(xs: list[float], edge_gains: list[float]) -> f
     for gain in edge_gains:
         total *= gain
     return total
+
+
+def calculate_holonomy(xs: list[float], method: str = "static") -> dict:
+    """Calculate holonomy for a closed loop.
+    
+    Args:
+        xs: List of dimensionless radii
+        method: Calculation method ("static" or "dynamic")
+        
+    Returns:
+        Dict with holonomy results
+    """
+    if method == "static":
+        invariant = closed_loop_invariant(xs)
+    else:
+        # Dynamic method - use unit gains
+        invariant = edge_modulated_loop_invariant(xs, [1.0] * len(xs))
+    
+    return {
+        "holonomy": invariant,
+        "is_trivial": abs(invariant - 1.0) < 1e-10,
+        "method": method,
+        "points": len(xs)
+    }

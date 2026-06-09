@@ -18,7 +18,7 @@ from .effective_distance import (
 )
 from .neighborhood import neighborhood_overlap, validate_neighborhood_proxy, NeighborhoodResult
 from .worldline import validate_worldline_continuity, WorldlineSample, WorldlineResult
-from .transport_mode import validate_transport_mode, no_copy_constraint
+from .transport_mode import validate_transport_mode, no_copy_constraint, TransportMode
 
 
 @dataclass
@@ -46,6 +46,11 @@ class SSZBridgeValidationReport:
     
     # Overall
     overall_readiness: TransportReadiness = TransportReadiness.MATH_CANDIDATE_ONLY
+    
+    # Alias for compatibility
+    @property
+    def readiness(self) -> TransportReadiness:
+        return self.overall_readiness
     
     # Scientific position
     scientific_position: str = ""
@@ -130,8 +135,8 @@ def validate_ssz_bridge_candidate(
     
     # Gate 4: Worldline Continuity (simplified for two points)
     samples = [
-        WorldlineSample(0.0, point_a),
-        WorldlineSample(1.0, point_b),
+        WorldlineSample(tau=0.0, t=point_a[0], r=point_a[1], theta=point_a[2], phi=point_a[3]),
+        WorldlineSample(tau=1.0, t=point_b[0], r=point_b[1], theta=point_b[2], phi=point_b[3]),
     ]
     
     wl_result = validate_worldline_continuity(samples)
@@ -155,7 +160,7 @@ def validate_ssz_bridge_candidate(
             unresolved.append(f"No-copy violation: {nc_result.get('message', '')}")
     else:
         # Default: continuous worldline assumed
-        nc_result = no_copy_constraint(None)  # Would need import
+        nc_result = no_copy_constraint(TransportMode.CONTINUOUS_WORLDLINE)  # Assume continuous for pending
         report.no_copy_status = SSZValidationStatus.PENDING
     
     # Determine overall readiness

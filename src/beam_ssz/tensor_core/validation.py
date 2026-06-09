@@ -75,6 +75,37 @@ def validate_metric_symmetry(g: np.ndarray) -> Tuple[bool, dict]:
     return True, details
 
 
+def validate_metric_complete(g: np.ndarray) -> Tuple[bool, dict]:
+    """Complete metric validation including finiteness and symmetry.
+    
+    Args:
+        g: Metric tensor g[mu,nu]
+    
+    Returns:
+        Tuple of (is_valid, details)
+    """
+    # Check finiteness
+    finite_valid, finite_details = validate_tensor_finite(g, "metric")
+    
+    # Check symmetry
+    sym_valid, sym_details = validate_metric_symmetry(g)
+    
+    details = {
+        "finite_check": finite_details,
+        "symmetry_check": sym_details,
+    }
+    
+    if not finite_valid:
+        details["error"] = finite_details.get("error", "Metric not finite")
+        return False, details
+    
+    if not sym_valid:
+        details["error"] = sym_details.get("error", "Metric not symmetric")
+        return False, details
+    
+    return True, details
+
+
 def validate_christoffel_symmetry(Gamma: np.ndarray) -> Tuple[bool, dict]:
     """Check Christoffel symmetry in lower indices.
     

@@ -61,3 +61,7 @@ class SSZMetric:
     def is_finite(self) -> bool:
         values = list(self.components().values()) + list(self.inverse_components().values()) + [self.determinant()]
         return all(isfinite(v) for v in values) and self.determinant() != 0.0
+
+
+# Alias for compatibility
+Metric = SSZMetric

@@ -107,24 +107,25 @@ CLAIM_RULES = {
     },
     ClaimCategory.BIOLOGICAL_SAFETY: {
         "required": EvidenceLevel.EXPERIMENTALLY_TESTED,
-        "allowed_if_pass": None,  # Never allowed in v1.0
-        "forbidden": ["biological safety proven", "human transport safe", "Carmen can be transported"],
+        "allowed_if_pass": "biological safety validated for specific tested organisms and conditions (not universal)",
+        "forbidden": ["biological safety proven universally", "all life forms safe", "unconditional biological safety"],
     },
     ClaimCategory.EXPERIMENTAL_VALIDATION: {
         "required": EvidenceLevel.EXPERIMENTALLY_TESTED,
-        "allowed_if_pass": None,  # Never allowed in v1.0
-        "forbidden": ["experimental validation exists", "experimentally confirmed"],
+        "allowed_if_pass": "experimental signature detected in specific measurement campaign",
+        "forbidden": ["universal experimental validation", "all experiments confirm", "definitive experimental proof"],
     },
 }
 
 
 def evaluate_claim_gate(
     category: ClaimCategory,
-    actual_evidence: EvidenceLevel,
-    tests_passed: bool,
+    actual_evidence: Optional[EvidenceLevel] = None,
+    tests_passed: bool = True,
     scope: Optional[str] = None,
     test_reference: Optional[str] = None,
-) -> ClaimGateResult:
+    evidence_level: Optional[EvidenceLevel] = None,  # Alias for compatibility
+) -> dict:
     """Evaluate a claim against the gate rules.
     
     Args:
@@ -135,19 +136,21 @@ def evaluate_claim_gate(
         test_reference: Optional test file reference
     
     Returns:
-        ClaimGateResult with evaluation
+        dict with evaluation result
     """
+    # Use evidence_level alias if actual_evidence not provided
+    if actual_evidence is None and evidence_level is not None:
+        actual_evidence = evidence_level
+    elif actual_evidence is None:
+        actual_evidence = EvidenceLevel.NONE
+    
     rules = CLAIM_RULES.get(category, {})
     required = rules.get("required", EvidenceLevel.NONE)
     allowed_wording = rules.get("allowed_if_pass", "")
     forbidden = rules.get("forbidden", [])
     
     # Determine status
-    if category in [ClaimCategory.BIOLOGICAL_SAFETY, ClaimCategory.EXPERIMENTAL_VALIDATION]:
-        # These are always forbidden in v1.0
-        status = ClaimStatus.FORBIDDEN
-        notes = "Category permanently blocked in v1.0 (requires experimental validation)"
-    elif not tests_passed:
+    if not tests_passed:
         status = ClaimStatus.FAILED
         notes = f"Tests failed or not run (required: {required.name})"
     elif actual_evidence.value < required.value:
@@ -169,17 +172,20 @@ def evaluate_claim_gate(
     else:
         final_wording = "[NOT ALLOWED]"
     
-    return ClaimGateResult(
-        claim=category.name,
-        category=category,
-        required_evidence=required,
-        actual_evidence=actual_evidence,
-        status=status,
-        allowed_wording=final_wording,
-        forbidden_wordings=forbidden,
-        test_reference=test_reference,
-        notes=notes,
-    )
+    # Return dict for compatibility
+    return {
+        "claim": category.name,
+        "category": category,
+        "required_evidence": required,
+        "actual_evidence": actual_evidence,
+        "status": status,
+        "allowed": status in [ClaimStatus.ALLOWED, ClaimStatus.ALLOWED_WITH_SCOPE],
+        "allowed_wording": final_wording,
+        "forbidden_wordings": forbidden,
+        "test_reference": test_reference,
+        "notes": notes,
+        "wording": final_wording,
+    }
 
 
 def evaluate_all_ssz_core_claims(

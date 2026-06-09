@@ -110,3 +110,22 @@ def second_derivative_chain_rule(
         d2f/dr2 = d2f/dx2 * (dx/dr)^2 + df/dx * d2x/dr2
     """
     return d2f_dx2(x) * dx_dr * dx_dr + df_dx(x) * d2x_dr2
+
+
+def covariant_derivative(f: Callable[[float], float], x: float, Gamma: np.ndarray = None) -> float:
+    """Compute covariant derivative df/dx at point x.
+    
+    Args:
+        f: Scalar field function
+        x: Point at which to evaluate
+        Gamma: Christoffel symbols (optional, defaults to zero)
+        
+    Returns:
+        Covariant derivative value
+    """
+    import numpy as np
+    # For scalar field, covariant derivative = regular derivative
+    # Use numerical differentiation
+    dx = 1e-8
+    df = f(x + dx) - f(x - dx)
+    return df / (2 * dx)

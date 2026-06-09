@@ -141,3 +141,7 @@ def compute_redshift_pound_rebka_style(
         "pound_rebka_style": True,
         "xi_gradient": result.xi_receiver - result.xi_emitter,
     }
+
+
+# Convenience alias for testing
+redshift = compute_redshift

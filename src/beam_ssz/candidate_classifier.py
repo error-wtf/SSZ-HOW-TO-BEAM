@@ -241,3 +241,27 @@ class CandidateClassifier:
 
 # Fix typo in constant
 CandidateClassifier.REDUCTION_THRESHOLD = 0.5
+
+
+def classify_candidate(candidate_id: str = "test_candidate", **kwargs) -> ClassificationReport:
+    """Convenience function to classify a bridge candidate.
+    
+    Args:
+        candidate_id: Candidate identifier
+        **kwargs: Additional classification parameters
+        
+    Returns:
+        ClassificationReport with results
+    """
+    classifier = CandidateClassifier()
+    report = classifier.classify(
+        candidate_id=candidate_id,
+        canonical=True,
+        nec_satisfied=kwargs.get("nec_satisfied", True),
+        ctc_free=kwargs.get("ctc_free", True),
+        singularity_free=kwargs.get("singularity_free", True),
+        worldline_continuous=kwargs.get("worldline_continuous", True),
+        tidal_safe=kwargs.get("tidal_safe", True),
+        reduction_significant=kwargs.get("reduction_significant", True),
+    )
+    return report

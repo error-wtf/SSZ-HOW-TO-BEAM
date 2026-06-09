@@ -456,3 +456,33 @@ if __name__ == "__main__":
         print("✗ No fully solvable configuration found in tested parameter space")
         print("  Trade-offs prevent simultaneous satisfaction of all constraints")
     print("=" * 70)
+
+
+def analyze_feasibility(parameters=None, **kwargs):
+    """Analyze feasibility of SSZ bridge configuration.
+    
+    Args:
+        parameters: Configuration parameters
+        **kwargs: Additional analysis options
+        
+    Returns:
+        FeasibilityResult
+    """
+    from .bridge_metric import create_canonical_bridge
+    
+    # Default parameters if none provided
+    if parameters is None:
+        parameters = {
+            "xi_left": 0.1,
+            "xi_right": 0.1,
+            "lambda_bridge": 0.5,
+        }
+    
+    # Create bridge
+    bridge = create_canonical_bridge(**parameters)
+    
+    # Run feasibility solver
+    solver = FeasibilitySolver(bridge)
+    result = solver.find_fully_solvable_configuration(**kwargs)
+    
+    return result

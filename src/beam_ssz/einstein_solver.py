@@ -296,6 +296,20 @@ def estimate_energy_requirements(
     }
 
 
+def solve_einstein_field_equations(bridge, **kwargs):
+    """Solve Einstein field equations for bridge metric.
+    
+    Args:
+        bridge: Bridge metric
+        **kwargs: Additional parameters
+        
+    Returns:
+        Solution dictionary
+    """
+    solver = BridgeEinsteinSolver()
+    return solver.solve_for_bridge(bridge, **kwargs)
+
+
 if __name__ == "__main__":
     # Example analysis
     from beam_ssz.bridge_metric import create_canonical_bridge

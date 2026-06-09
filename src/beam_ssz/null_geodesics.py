@@ -33,3 +33,29 @@ def light_travel_time_x(x1: float, x2: float, *, r_s: float = 1.0, c: float = C,
 
 def flat_light_travel_time_x(x1: float, x2: float, *, r_s: float = 1.0, c: float = C) -> float:
     return (x2 - x1) * r_s / c
+
+
+def null_geodesic(x_start: float, x_end: float, steps: int = 100, *, c: float = C) -> list:
+    """Compute null geodesic path.
+    
+    Args:
+        x_start: Starting dimensionless radius
+        x_end: Ending dimensionless radius
+        steps: Number of steps
+        c: Speed of light
+        
+    Returns:
+        List of (x, t) points along null geodesic
+    """
+    import numpy as np
+    xs = np.linspace(x_start, x_end, steps)
+    ts = np.zeros(steps)
+    
+    # Integrate dt/dr
+    for i in range(1, steps):
+        x_mid = 0.5 * (xs[i-1] + xs[i])
+        dt_dr = dt_dr_null(x_mid, c=c)
+        dr = xs[i] - xs[i-1]
+        ts[i] = ts[i-1] + dt_dr * dr
+    
+    return [(float(x), float(t)) for x, t in zip(xs, ts)]

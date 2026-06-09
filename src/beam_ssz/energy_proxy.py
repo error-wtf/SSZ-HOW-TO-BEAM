@@ -193,3 +193,18 @@ def validate_no_linear_energy_addition(energy_components: Dict[str, float]) -> b
         return False  # Suspicious
     
     return True  # Probably OK
+
+
+def calculate_energy_proxy(D: float, s: float, method: str = "naive") -> Dict[str, Any]:
+    """Calculate energy proxy using SSZ D and s factors.
+    
+    Args:
+        D: Segmentation factor
+        s: Compression factor  
+        method: Calculation method
+        
+    Returns:
+        Dict with energy proxy results
+    """
+    diagnostic = EnergyProxyDiagnostic()
+    return diagnostic.estimate_energy_density_proxy(D, s, method)

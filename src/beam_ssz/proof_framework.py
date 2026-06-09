@@ -408,3 +408,7 @@ if __name__ == "__main__":
     )
     
     results = analyze_bridge_for_proof(bridge, l_normal=1.0, verbose=True)
+
+
+# Alias for compatibility
+ProofFramework = BeamingProofFramework

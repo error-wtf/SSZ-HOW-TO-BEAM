@@ -266,3 +266,7 @@ def evaluate_bridge_candidate(
         singularity_flag=singularity_flag,
         worldline_continuous=worldline_continuous,
     )
+
+
+# Convenience alias for testing
+MetricBridge = BridgeCandidate

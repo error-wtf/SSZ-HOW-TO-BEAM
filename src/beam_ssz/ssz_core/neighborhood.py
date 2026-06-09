@@ -56,35 +56,53 @@ def segment_neighborhood(
 
 
 def neighborhood_overlap(
-    point_a: np.ndarray,
-    point_b: np.ndarray,
-    xi_a: float,
-    xi_b: float,
+    point_a,
+    point_b,
+    xi_a: float = None,
+    xi_b: float = None,
     bridge_coupling: float = 0.0,
     scale: float = 1.0,
 ) -> float:
     """Return overlap score/proxy for N(A) ∩ N(B).
     
     Args:
-        point_a: Point A coordinates
-        point_b: Point B coordinates
-        xi_a: Xi at A
-        xi_b: Xi at B
+        point_a: Point A coordinates or just r value
+        point_b: Point B coordinates or just r value
+        xi_a: Xi at A (if point_a is float)
+        xi_b: Xi at B (if point_b is float)
         bridge_coupling: Bridge coupling (0 = no bridge, 1 = full)
         scale: Neighborhood scale
     
     Returns:
         Overlap score (0 = no overlap, 1 = complete overlap)
     """
-    # Distance between points
-    spatial_distance = np.linalg.norm(point_a[1:] - point_b[1:])
+    # Handle both array and float inputs
+    if np.isscalar(point_a):
+        # Simple case: just radii given
+        r_a = float(point_a)
+        r_b = float(point_b)
+        # Use default Xi if not provided
+        xi_a = xi_a if xi_a is not None else 0.1
+        xi_b = xi_b if xi_b is not None else 0.1
+    else:
+        # Array case: extract radius from coordinate
+        point_a = np.asarray(point_a)
+        point_b = np.asarray(point_b)
+        r_a = point_a[1] if len(point_a) > 1 else point_a[0]
+        r_b = point_b[1] if len(point_b) > 1 else point_b[0]
+        # Extract Xi if not provided, or use default
+        xi_a = xi_a if xi_a is not None else 0.1
+        xi_b = xi_b if xi_b is not None else 0.1
+    
+    # Distance between points (radial only for simplicity)
+    spatial_distance = abs(r_b - r_a)
     
     # Neighborhood radii
     D_a = 1.0 / (1.0 + xi_a)
     D_b = 1.0 / (1.0 + xi_b)
     
-    radius_a = scale * D_a * point_a[1]
-    radius_b = scale * D_b * point_b[1]
+    radius_a = scale * D_a * r_a
+    radius_b = scale * D_b * r_b
     
     # Without bridge: check if neighborhoods overlap
     if bridge_coupling <= 0:

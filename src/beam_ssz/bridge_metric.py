@@ -496,3 +496,11 @@ if __name__ == "__main__":
     print(f"\nBridge distance: {bridge.bridge_distance():.6f} m")
     print(f"Normal distance: {l_normal:.6f} m")
     print(f"Reduction factor: {bridge.bridge_distance() / l_normal:.6f}")
+
+
+# Alias for compatibility
+BridgeMetric = SSZBridgeMetric
+
+
+# Convenience alias for testing
+BridgeMetric = SSZBridgeMetric

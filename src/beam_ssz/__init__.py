@@ -29,6 +29,10 @@ from .holonomy import closed_loop_invariant
 # v0.6 bridge metric
 from .bridge_metric import SSZBridgeMetric, create_canonical_bridge, evaluate_bridge_candidate
 
+# Bridge & Search
+from .bridge_candidate import BridgeCandidate
+from .search_space import SearchSpace
+
 # v0.9 tensor core (array-based)
 from .tensor_core import (
     CoordinateIndex,
@@ -212,6 +216,9 @@ __all__ = [
     "no_copy_constraint",
     "SSZBridgeValidationReport",
     "validate_ssz_bridge_candidate",
+    # Bridge & Search
+    "BridgeCandidate",
+    "SearchSpace",
     # Claim Gates v1.0
     "EvidenceLevel",
     "ClaimCategory",

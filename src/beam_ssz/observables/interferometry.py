@@ -162,3 +162,7 @@ def compute_ligo_style_proxies(
         "ligo_style_proxy": True,
         "WARNING": "Static SSZ background proxy only, not time-varying GW signal",
     }
+
+
+# Convenience alias for testing
+interferometry_phase = compute_interferometer_response

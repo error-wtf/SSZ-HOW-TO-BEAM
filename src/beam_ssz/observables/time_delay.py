@@ -150,3 +150,7 @@ def compute_shapiro_delay_cassini_style(
         "r_min_solar_radii": r_min,
         "cassini_style_measurement": True,
     }
+
+
+# Convenience alias for testing
+shapiro_delay = compute_photon_delay

@@ -38,6 +38,46 @@ def effective_potential(x: float, angular_momentum: float = 0.0, r_s: float = 1.
         raise ValueError("x and r_s must be positive")
     r = x * r_s
     D = d_factor(x)
+    return D**2 * (c**2 + angular_momentum**2 / r**2)
+
+
+def geodesic_equation(x: float, constants: TimelikeConstants, r_s: float = 1.0) -> dict:
+    """Compute geodesic equation components.
+    
+    Args:
+        x: Dimensionless radius r/r_s
+        constants: TimelikeConstants with energy and angular momentum
+        r_s: Schwarzschild radius
+        
+    Returns:
+        Dict with dr/dtau, dt/dtau, dphi/dtau
+    """
+    c = constants.c
+    E = constants.energy
+    L = constants.angular_momentum
+    
+    r = x * r_s
+    D = d_factor(x)
+    
+    # dt/dtau = E / (D² c²)
+    dt_dtau = E / (D**2 * c**2)
+    
+    # dphi/dtau = L / r²
+    dphi_dtau = L / r**2
+    
+    # (dr/dtau)² = E²/c² - D²(c² + L²/r²)
+    V_eff = effective_potential(x, L, r_s, c)
+    E_eff = E**2 / c**2
+    
+    dr_dtau_sq = E_eff - V_eff
+    dr_dtau = sqrt(max(0.0, dr_dtau_sq)) if dr_dtau_sq > 0 else 0.0
+    
+    return {
+        "dr_dtau": dr_dtau,
+        "dt_dtau": dt_dtau,
+        "dphi_dtau": dphi_dtau,
+        "velocity_squared": dr_dtau**2 + (r * dphi_dtau)**2
+    }
     return D * D * (c * c + (angular_momentum * angular_momentum) / (r * r))
 
 

@@ -31,3 +31,16 @@ def render_candidate_report(candidate: BridgeCandidate, report: ValidationReport
 
 {warnings}
 """
+
+
+# Convenience class for testing
+class ReportGenerator:
+    """Simple report generator wrapper."""
+    
+    def generate(self, candidate: BridgeCandidate, report: ValidationReport) -> str:
+        """Generate report for candidate."""
+        return render_candidate_report(candidate, report)
+    
+    def generate_summary(self, results: list) -> str:
+        """Generate summary report."""
+        return f"Summary: {len(results)} candidates processed"
