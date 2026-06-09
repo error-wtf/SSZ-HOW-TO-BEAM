@@ -6,12 +6,12 @@ When you run `python run_all_tests.py`, you will see:
 
 ```
 ================================================================================
-SSZ-HOW-TO-BEAM v1.0.0 - Comprehensive Test Runner
+SSZ-HOW-TO-BEAM v1.1.0-canonical - Comprehensive Test Runner
 ================================================================================
 
 [INFO] Starting comprehensive test suite...
 [INFO] Metadata: {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "date": "2026-06-09T...",
   "python_version": "3.13.7",
   "platform": "linux"

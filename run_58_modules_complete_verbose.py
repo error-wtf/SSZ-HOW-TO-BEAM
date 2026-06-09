@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-SSZ-HOW-TO-BEAM v1.0.0 - ALL 58 MODULES COMPLETE VERBOSE TEST
+SSZ-HOW-TO-BEAM v1.1.0-canonical - ALL 58 MODULES COMPLETE VERBOSE TEST
 Maximum detail output for EVERY SINGLE MODULE
+Canonical SSZ aligned with complete documentation
 """
 
 import sys
 from datetime import datetime
 
 print("╔══════════════════════════════════════════════════════════════════════════════╗")
-print("║     SSZ-HOW-TO-BEAM v1.0.0 - ALL 58 MODULES COMPLETE VERBOSE TEST          ║")
+print("║     SSZ-HOW-TO-BEAM v1.1.0-canonical - ALL 58 MODULES COMPLETE VERBOSE TEST║")
 print("║              Maximum Detail Output - Every Calculation Shown               ║")
 print("╚══════════════════════════════════════════════════════════════════════════════╝")
 print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -39,10 +40,15 @@ def test_module(name, test_func):
 
 def test_xi_from_radius():
     from beam_ssz import xi_from_radius
-    print("┌─ FORMULA: Xi = r_s/r (normalized, r_s = 1.0) ─────────────────────────────┐")
+    print("┌─ CANONICAL SSZ FORMULAS ──────────────────────────────────────────────────┐")
+    print("│ Xi_weak(r) = r_s/(2r)       for r/r_s > 2.2")
+    print("│ Xi_strong(r) = 1 - exp(-φ·r_s/r) for r/r_s < 1.8")
+    print("│ Blend zone: 1.8 ≤ r/r_s ≤ 2.2")
+    print("│ D_SSZ = 1/(1+Xi)  |  s = 1+Xi = 1/D")
+    print("│ At r = r_s: Xi = 0.801711847, D = 0.555027709, s = 1.801711847")
+    print("├─ LEGACY TOY NORMALIZATION SMOKE TEST (Not canonical) ──────────────────────┤")
     print("│ r_s = 1.0 (Schwarzschild radius, normalized)")
     print("│ Note: PHI in constants.py is the golden ratio (≈1.618) and is separate")
-    print("│       from this normalized Xi test")
     radii = [1.0, 10.0, 100.0, 1000.0, 10000.0]
     print(f"│ Input radii (r_s units): {radii}")
     print("├─ CALCULATIONS ─────────────────────────────────────────────────────────────┤")

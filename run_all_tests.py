@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-SSZ-HOW-TO-BEAM v1.0.0 - Comprehensive Test Runner
+SSZ-HOW-TO-BEAM v1.1.0-canonical - Comprehensive Test Runner
 
 Runs all tests and generates FULL_REPORT.md with complete results,
 assessments, and summary.
+Canonical SSZ aligned with complete documentation.
 
 Usage:
     python run_all_tests.py

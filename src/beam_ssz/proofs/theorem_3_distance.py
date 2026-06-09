@@ -312,7 +312,7 @@ def distance_theorem() -> dict:
     validation_result = {
         "theorem": 3,
         "name": "Distance Reduction",
-        "status": "MATHEMATICALLY_PROVEN" if (distance_reduction_valid and time_valid) else "FAILED",
+        "status": "PROXY_DIAGNOSTIC_PASS" if (distance_reduction_valid and time_valid) else "FAILED",
         "proof_steps": {
             "l_normal": l_normal,
             "l_bridge": l_bridge,
@@ -321,7 +321,7 @@ def distance_theorem() -> dict:
             "time_valid": time_valid,
             "equivalent_gamma": time_dilation_equiv
         },
-        "conclusion": "Bridge metric reduces effective distance below normal spacetime" if distance_reduction_valid else "Distance reduction failed"
+        "conclusion": "Bridge metric reduces effective distance in tested proxy/candidate regimes; physical beaming is not proven." if distance_reduction_valid else "Distance reduction proxy test failed"
     }
     
     return validation_result

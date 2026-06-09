@@ -50,6 +50,16 @@ def create_release_zip(
         "*.egg",
         "old_dist",
         "docs/archive/OLD_FAILED_RUNS",
+        # Old v1.0.0 release files (historical, not current)
+        "RELEASE_v1.0.0.md",
+        "RELEASE_AUDIT_v1.0.0.md",
+        "V0_8_FREEZE_REPORT.md",
+        "V0_9_DEVELOPMENT_PLAN.md",
+        "COMPLETE_VALUE_ANALYSIS.md",
+        "REAL_TEST_RESULTS.txt",
+        "test_v1_final.py",
+        "FULL_REPORT.md",
+        "*.zip",  # Old release ZIPs
     ]
     
     all_excludes = default_excludes + exclude_patterns

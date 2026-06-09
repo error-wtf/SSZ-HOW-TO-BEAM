@@ -46,7 +46,13 @@ print("=" * 80)
 
 def test_xi_from_radius():
     from beam_ssz import xi_from_radius
-    print("    ┌─ FORMULA: Xi = r_s/r (normalized, r_s = 1.0) ─────────────────────────────┐")
+    print("    ┌─ CANONICAL SSZ FORMULAS ──────────────────────────────────────────────────┐")
+    print("    │ Xi_weak(r) = r_s/(2r)       for r/r_s > 2.2")
+    print("    │ Xi_strong(r) = 1 - exp(-φ·r_s/r) for r/r_s < 1.8")
+    print("    │ Blend zone: 1.8 ≤ r/r_s ≤ 2.2")
+    print("    │ D_SSZ = 1/(1+Xi)  |  s = 1+Xi = 1/D")
+    print("    │ At r = r_s: Xi = 0.801711847, D = 0.555027709, s = 1.801711847")
+    print("    ├─ LEGACY TOY NORMALIZATION SMOKE TEST (Not canonical SSZ) ─────────────────┤")
     print("    │ r_s = 1.0 (Schwarzschild radius, normalized)")
     print("    │ Testing inverse proportionality: Xi ∝ 1/r")
     print("    │ Note: PHI in constants.py is separate (Golden Ratio ≈ 1.618)")
@@ -484,10 +490,18 @@ print("=" * 80)
 
 def test_formation_effective_source():
     from beam_ssz import SSZBridgeMetric, compute_effective_source
+    import numpy as np
     bridge = SSZBridgeMetric(xi_left=0.1, xi_right=0.0, lambda_bridge=0.1, ell0=10.0)
     result = compute_effective_source(bridge, u=0.0)
-    print(f"    Effective source computed: status={result.status.name}")
-    print(f"    Energy density: {result.energy_density:.6e}")
+    # Check for NaN and provide clear diagnostic
+    if np.isnan(result.energy_density):
+        print(f"    Effective source diagnostic: PARTIAL")
+        print(f"    Energy density: NaN detected")
+        print(f"    Status: FORMATION_UNRESOLVED / DIAGNOSTIC_PARTIAL")
+        print(f"    Physical formation: NOT_SOLVED")
+    else:
+        print(f"    Effective source computed: status={result.status.name}")
+        print(f"    Energy density: {result.energy_density:.6e}")
     assert result.T_eff is not None
 
 def test_formation_energy_budget():
