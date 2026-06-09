@@ -110,7 +110,7 @@ def compute_effective_source(
     """
     # Import here to avoid circular dependency
     from ..tensor_core import compute_einstein
-    from ..tensor_core.metric_backend import ssz_metric
+    from ..ssz_core.metric import ssz_metric_tensor
     
     # Position array
     position = np.array([0.0, u, theta, phi])
@@ -120,16 +120,9 @@ def compute_effective_source(
     D_val = bridge.D(u)
     s_val = bridge.s(u)
     
-    # Create metric function
+    # Create metric function using canonical SSZ metric
     def g_func(x):
-        return ssz_metric(
-            x,
-            bridge.xi_left,
-            bridge.xi_right,
-            bridge.lambda_bridge,
-            bridge.ell0,
-            bridge.throat_radius
-        )['g']
+        return ssz_metric_tensor(x, xi_val)
     
     try:
         # Compute Einstein tensor

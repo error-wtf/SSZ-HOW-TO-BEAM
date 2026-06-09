@@ -65,7 +65,7 @@ def check_boundary_regularity(
         BoundaryCheckResult with regularity status
     """
     from ..tensor_core import ricci_scalar
-    from ..tensor_core.metric_backend import ssz_metric
+    from ..ssz_core.metric import ssz_metric_tensor
     
     check_points = {
         'left': -1.0,
@@ -91,15 +91,10 @@ def check_boundary_regularity(
             det_finite = np.isfinite(det) and abs(det) > 1e-15
             
             # Check curvature (via Ricci scalar as proxy)
+            # Get Xi at this point for canonical metric
+            xi_val = bridge.xi(u)
             def g_func(x):
-                return ssz_metric(
-                    x,
-                    bridge.xi_left,
-                    bridge.xi_right,
-                    bridge.lambda_bridge,
-                    bridge.ell0,
-                    bridge.throat_radius
-                )['g']
+                return ssz_metric_tensor(x, xi_val)
             
             position = np.array([0.0, u, np.pi/2, 0.0])
             try:
