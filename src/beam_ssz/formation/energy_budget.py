@@ -143,7 +143,11 @@ def compute_energy_budget(
     
     # Integrate
     # E = ∫ ρ(u) * A * du * ell0
-    total_energy_geom = np.trapz(energy_densities, positions) * throat_area * bridge.ell0
+    # Use np.trapezoid for NumPy 2.0+ compatibility
+    if hasattr(np, 'trapezoid'):
+        total_energy_geom = np.trapezoid(energy_densities, positions) * throat_area * bridge.ell0
+    else:
+        total_energy_geom = np.trapz(energy_densities, positions) * throat_area * bridge.ell0
     total_energy_si = total_energy_geom * conversion_factor
     
     # Localization analysis
