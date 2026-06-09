@@ -23,6 +23,11 @@ from .riemann import compute_riemann
 from .ricci import compute_ricci, ricci_scalar
 from .einstein import compute_einstein
 from .stress_energy import compute_stress_energy
+from .ssz_stress_energy import (
+    reconstruct_stress_energy_from_ssz,
+    check_energy_conditions,
+    analyze_ssz_bridge_matter,
+)
 from .null_vectors import generate_null_vectors
 from .energy_conditions import check_nec, check_wec
 from .validation import validate_tensor_finite, validate_metric_complete
@@ -46,6 +51,9 @@ __all__ = [
     "ricci_scalar",
     "compute_einstein",
     "compute_stress_energy",
+    "reconstruct_stress_energy_from_ssz",
+    "check_energy_conditions",
+    "analyze_ssz_bridge_matter",
     "generate_null_vectors",
     "check_nec",
     "check_wec",

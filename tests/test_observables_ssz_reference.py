@@ -171,8 +171,8 @@ class TestTimeDelayShapiro:
             xi_func=lambda r: 0.1,
         )
         
-        # 10 r_s → STRONG regime
-        assert result.regime == "STRONG"
+        # Xi = r_s/r = 0.1 → MODERATE regime (0.1 <= Xi < 1.0)
+        assert result.regime == "MODERATE"
 
 
 class TestPhaseShiftCalculation:
