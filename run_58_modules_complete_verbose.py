@@ -39,9 +39,10 @@ def test_module(name, test_func):
 
 def test_xi_from_radius():
     from beam_ssz import xi_from_radius
-    print("┌─ FORMULA: Xi = PHI × (r_s/r) ─────────────────────────────────────────────┐")
-    print("│ PHI = 0.20898764024997873 (dimensionless constant)")
-    print("│ r_s = 1.0 (Schwarzschild radius)")
+    print("┌─ FORMULA: Xi = r_s/r (normalized, r_s = 1.0) ─────────────────────────────┐")
+    print("│ r_s = 1.0 (Schwarzschild radius, normalized)")
+    print("│ Note: PHI in constants.py is the golden ratio (≈1.618) and is separate")
+    print("│       from this normalized Xi test")
     radii = [1.0, 10.0, 100.0, 1000.0, 10000.0]
     print(f"│ Input radii (r_s units): {radii}")
     print("├─ CALCULATIONS ─────────────────────────────────────────────────────────────┤")
@@ -544,7 +545,7 @@ def test_theorem_3_distance():
     print(f"│ Status: {result['status']}")
     print(f"│ Conclusion: {result['conclusion']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Theorem 3 verified"
+    return "Theorem 3 status check passed"
 
 test_module("theorem_3_distance", test_theorem_3_distance)
 
@@ -555,7 +556,7 @@ def test_theorem_4_energy():
     print(f"│ Theorem: {result['theorem']}")
     print(f"│ Name: {result['name']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Theorem 4 verified"
+    return "Theorem 4 status check passed"
 
 test_module("theorem_4_energy", test_theorem_4_energy)
 
@@ -566,7 +567,7 @@ def test_theorem_5_tidal():
     print(f"│ Theorem: {result['theorem']}")
     print(f"│ Name: {result['name']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Theorem 5 verified"
+    return "Theorem 5 status check passed"
 
 test_module("theorem_5_tidal", test_theorem_5_tidal)
 
@@ -577,7 +578,7 @@ def test_theorem_6_stability():
     print(f"│ Theorem: {result['theorem']}")
     print(f"│ Name: {result['name']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Theorem 6 verified"
+    return "Theorem 6 status check passed"
 
 test_module("theorem_6_stability", test_theorem_6_stability)
 
@@ -588,7 +589,7 @@ def test_theorem_7_quantum():
     print(f"│ Theorem: {result['theorem']}")
     print(f"│ Name: {result['name']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Theorem 7 verified"
+    return "Theorem 7 status check passed"
 
 test_module("theorem_7_quantum", test_theorem_7_quantum)
 
@@ -599,7 +600,7 @@ def test_theorem_8_thermodynamics():
     print(f"│ Theorem: {result['theorem']}")
     print(f"│ Name: {result['name']}")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Theorem 8 verified"
+    return "Theorem 8 status check passed"
 
 test_module("theorem_8_thermodynamics", test_theorem_8_thermodynamics)
 
@@ -644,7 +645,7 @@ def test_real_beam_readiness():
     print("┌─ TEST: Real BEAM readiness ─────────────────────────────────────────────────┐")
     print("│ calculate_readiness available")
     print("└────────────────────────────────────────────────────────────────────────────┘")
-    return "Real BEAM readiness ready"
+    return "Readiness classifier status check passed"
 
 test_module("real_beam_readiness", test_real_beam_readiness)
 
