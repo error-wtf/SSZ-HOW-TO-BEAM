@@ -89,9 +89,9 @@ It does **not** provide:
 ## 📝 Citation
 
 ```bibtex
-@software{ssz_how_to_beam_v1_0_0,
+@software{ssz_how_to_beam_v1_1_0,
   title = {SSZ-HOW-TO-BEAM: Bridge Metric Research Framework},
-  version = {1.0.0},
+  version = {1.1.0-canonical},
   year = {2025},
   url = {https://github.com/error-wtf/SSZ-HOW-TO-BEAM}
 }
@@ -113,4 +113,4 @@ This framework explores a single theoretical question: *Can a continuous worldli
 
 The SSZ (Segmented Spacetime) ansatz provides a mathematical scaffold for this exploration. Whether such metrics can exist physically remains an open research question.
 
-**Status:** Mathematical scaffold v1.0.0 - tested and documented.
+**Status:** Mathematical scaffold v1.1.0-canonical - framework tested, physics incomplete.

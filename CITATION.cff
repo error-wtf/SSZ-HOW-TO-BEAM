@@ -1,20 +1,20 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "BEAM-SSZ: Mathematical Research Scaffold for Real-Beaming"
-version: 0.6
+version: 1.1.0-canonical
 authors:
   - family-names: "Wrede"
     given-names: "Carmen N."
   - family-names: "Casu"
     given-names: "Lino P."
 date-released: 2026-06-08
-repository-code: "https://github.com/beam-ssz/beam-ssz-v0.6"
+repository-code: "https://github.com/error-wtf/SSZ-HOW-TO-BEAM"
 license: MIT
 abstract: |
   BEAM-SSZ is a constraint-first research scaffold for studying whether 
   continuous worldline transfer can be formulated inside the Wrede-Casu 
   Segmented Spacetime (SSZ) framework without destructive scanning, copying, 
-  warp-drive claims, or unmarked exotic-matter assumptions. Version 0.6 
+  warp-drive claims, or unmarked exotic-matter assumptions. Version 1.1.0-canonical 
   introduces the SSZ Bridge Metric as the core mathematical solution: 
   A and B are modeled as two boundary surfaces of a common bridge metric, 
   with movement along a continuous worldline in the bridge channel rather 

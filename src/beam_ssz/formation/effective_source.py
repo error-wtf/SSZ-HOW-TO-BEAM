@@ -119,8 +119,14 @@ def compute_effective_source(
     # CRITICAL FIX: Use bridge's own metric_tensor method, not spherical ssz_metric_tensor
     # Bridge metric uses cylindrical throat geometry with R_B(u), not r=u
     # This prevents singularity at u=0 (which would be r=0 in spherical)
+    # 
+    # KNOWN LIMITATION (v1.1.0): g_func currently freezes u, so the metric
+    # does not vary with position x during differentiation. This yields G=0
+    # and T_eff=0, which is finite but not yet a full coordinate-dependent
+    # bridge curvature calculation. Full bridge Einstein tensor reconstruction
+    # along u remains an open research problem.
     def g_func(x):
-        # Bridge metric is independent of position x, uses bridge coordinate u
+        # Bridge metric evaluated at fixed u (limitation: no x-dependence)
         return np.array(bridge.metric_tensor(u, theta=theta))
     
     # Use proper radius for curvature calculation
