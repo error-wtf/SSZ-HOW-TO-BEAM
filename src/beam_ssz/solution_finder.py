@@ -207,7 +207,7 @@ class ActualSolutionFinder:
         cls,
     ) -> List[WorkingSolution]:
         """
-        Specifically optimize for human-safe transport.
+        Search for extended-body stress proxy configurations.
         
         Constraints:
         - Tidal < 10g for extended periods
@@ -308,13 +308,13 @@ class ActualSolutionFinder:
             if verbose:
                 print(f"   Minimum energy: {min_energy.energy_density:.3e} J/m³")
         
-        # Search 3: Human-safe
+        # Search 3: Extended-body proxy
         if verbose:
-            print("\n[3] Searching for human-safe configurations...")
+            print("\n[3] Searching for extended-body proxy configurations...")
         human_safe = cls.optimize_for_human_transport()
         all_solutions.extend(human_safe)
         if verbose:
-            print(f"   Found {len(human_safe)} human-safe candidates")
+            print(f"   Found {len(human_safe)} proxy-safe candidates")
         
         # Find best overall
         if all_solutions:
@@ -353,9 +353,9 @@ if __name__ == "__main__":
         print(f"\n✓ SOLUTION FOUND: {solution.name}")
         print(f"  Solves {solution.problems_solved}/{solution.problems_total} problems")
         if solution.problems_solved == 4:
-            print("  → ALL PROBLEMS SOLVED!")
+            print("  → ALL DIAGNOSTICS PASS (no physical viability claimed)")
         elif solution.problems_solved >= 3:
-            print("  → MOST PROBLEMS SOLVED (acceptable)")
+            print("  → MULTIPLE DIAGNOSTICS PASS (research continues)")
         else:
             print("  → PARTIAL SOLUTION")
     else:

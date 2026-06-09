@@ -438,7 +438,8 @@ def print_final_solutions():
     formation_sols, energy_sols = solver.get_complete_solution_set()
     
     print("=" * 80)
-    print("FINAL SOLUTIONS - LAST 2 PROBLEMS SOLVED")
+    print("CANDIDATE DIAGNOSTICS - RESEARCH STATUS REPORT")
+    print("Note: Formation and stability remain unresolved research problems")
     print("=" * 80)
     
     print("\n" + "=" * 80)

@@ -28,6 +28,7 @@ from .effective_source import (
     compute_effective_source,
     EffectiveSourceResult,
     SourceDiagnostics,
+    SourceStatus,
 )
 from .energy_budget import (
     compute_energy_budget,
@@ -60,6 +61,7 @@ __all__ = [
     "scan_effective_source_along_bridge",
     "EffectiveSourceResult",
     "SourceDiagnostics",
+    "SourceStatus",
     # Energy budget
     "compute_energy_budget",
     "energy_budget_sensitivity_analysis",

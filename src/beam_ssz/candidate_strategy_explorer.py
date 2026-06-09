@@ -452,11 +452,11 @@ if __name__ == "__main__":
     ultimate = solver.find_the_ultimate_solution(verbose=True)
     
     if ultimate:
-        print(f"\n✓ ULTIMATE SOLUTION FOUND")
-        print(f"  Solves {ultimate.problems_solved}/4 critical problems")
-        if ultimate.problems_solved >= 3:
-            print("  → MOST PROBLEMS SOLVED - PRACTICALLY VIABLE")
-        elif ultimate.problems_solved == 4:
-            print("  → ALL PROBLEMS SOLVED - FULLY WORKABLE")
+        print(f"\n✓ CANDIDATE CONFIGURATION FOUND")
+        print(f"  Passes {ultimate.problems_solved}/4 diagnostic checks")
+        if ultimate.problems_solved == 4:
+            print("  → ALL DIAGNOSTICS PASS (no physical viability claimed)")
+        elif ultimate.problems_solved >= 3:
+            print("  → MULTIPLE DIAGNOSTICS PASS (research continues)")
     else:
-        print("\n✗ No ultimate solution found")
+        print("\n✗ No candidate configuration found")

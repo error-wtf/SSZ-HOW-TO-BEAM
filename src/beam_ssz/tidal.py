@@ -246,10 +246,10 @@ def find_safe_bridge_parameters(
     n_samples: int = 20,
     tolerance: float = 10.0
 ) -> dict:
-    """Parameter scan for human-safe bridge configurations.
+    """Parameter scan for extended-body stress proxy configurations.
     
     Searches parameter space for bridge configurations that
-    would be safe for human passage.
+    satisfy proxy-based stress thresholds (not biological safety).
     
     Args:
         xi_left_range: (min, max) for left segment density
