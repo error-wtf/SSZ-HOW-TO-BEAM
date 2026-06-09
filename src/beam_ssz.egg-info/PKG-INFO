@@ -1,16 +1,186 @@
-# SSZ-HOW-TO-BEAM v1.0.0
+Metadata-Version: 2.4
+Name: beam-ssz
+Version: 0.8.0
+Summary: Mathematical Research Scaffold for Real-Beaming in Segmented Spacetime (SSZ)
+Author: Carmen N. Wrede, Lino P. Casu
+License: # Anticapitalist Software License 1.4
+        
+        **Copyright (c) 2025-2026 Lino P. Casu**
+        
+        ## Preamble
+        
+        This software is provided to promote scientific research and knowledge sharing
+        while explicitly rejecting capitalist exploitation of intellectual labor.
+        
+        ## Terms and Conditions
+        
+        ### 1. Grant of Rights
+        
+        Permission is hereby granted, free of charge, to any person or organization
+        obtaining a copy of this software and associated documentation files (the
+        "Software"), to use, copy, modify, merge, publish, distribute, and/or sublicense
+        copies of the Software, subject to the following conditions:
+        
+        ### 2. Anticapitalist Conditions
+        
+        The above rights are granted ONLY to:
+        
+        **A. Individual natural persons** acting in their personal capacity, not as
+        employees or agents of any corporation, company, or commercial entity.
+        
+        **B. Non-profit organizations** whose primary purpose is scientific research,
+        education, public benefit, or mutual aid, and which do not distribute profits
+        to owners, shareholders, or investors.
+        
+        **C. Worker-owned cooperatives** where all workers have equal ownership and
+        decision-making power, and profits are distributed equitably among workers.
+        
+        **D. Public institutions** including universities, libraries, museums, and
+        government research agencies operating for public benefit.
+        
+        ### 3. Prohibited Uses
+        
+        **THE FOLLOWING USES ARE EXPLICITLY PROHIBITED:**
+        
+        - Use by for-profit corporations, companies, or businesses
+        - Use for military or surveillance applications
+        - Use for cryptocurrency, blockchain, or NFT projects
+        - Use for data mining or surveillance capitalism
+        - Use for creating proprietary software that is sold for profit
+        - Any use that contributes to wealth accumulation by capital owners
+        
+        ### 4. Copyleft Requirement
+        
+        Any derivative works, modifications, or distributions of this Software must:
+        
+        - Be licensed under this same Anticapitalist Software License 1.4
+        - Include this license text in full
+        - Make source code freely available to all users
+        - Not impose additional capitalist restrictions
+        
+        ### 5. Commercial Use Exception
+        
+        Small-scale commercial use is permitted ONLY if:
+        
+        - The entity is a worker-owned cooperative with equal ownership
+        - No venture capital or investor funding is involved
+        - Profits are distributed equitably among all workers
+        - The business operates for social benefit, not wealth extraction
+        
+        ### 6. No Warranty
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+        
+        ### 7. Attribution
+        
+        All copies or substantial portions of the Software must include:
+        
+        - This license text
+        - The copyright notice: "Copyright (c) 2025-2026 Lino P. Casu"
+        - Attribution to the original author
+        
+        ### 8. Scientific Research Exception
+        
+        Notwithstanding any other provision, use for peer-reviewed scientific research
+        is always permitted, provided that:
+        - Research results are published in open-access venues
+        - Data and methodologies are shared openly
+        - No proprietary restrictions are placed on research outputs
+        
+        ### 9. Enforcement
+        
+        Violations of this license terminate all rights granted herein. The author
+        reserves the right to take legal action against violators.
+        
+        ### 10. Compatibility
+        
+        This license is NOT compatible with:
+        - MIT License
+        - BSD License
+        - Apache License
+        - Proprietary licenses
+        
+        It IS compatible with:
+        - GPL v3 (with anticapitalist provisions)
+        - Creative Commons BY-NC-SA
+        - Other anticapitalist licenses
+        
+        ---
+        
+        ## Author Statement
+        
+        **This software is dedicated to:**
+        - Open scientific knowledge
+        - Worker liberation
+        - The abolition of capitalist exploitation
+        - The commons of human intellectual labor
+        
+        **The author, Lino P. Casu, explicitly rejects:**
+        - The commodification of software
+        - The extraction of surplus value from workers
+        - The enclosure of the intellectual commons
+        - The profit motive in scientific research
+        
+        ---
+        
+        ## DISCLAIMER
+        
+        This software is a mathematical research framework for studying the theoretical
+        foundations of continuous worldline transfer within the Segmented Spacetime (SSZ)
+        framework. It does not claim that human teleportation is currently possible, nor
+        does it provide a blueprint for any device. The author explicitly forbids
+        biological system experiments until all prior experimental levels are validated
+        and appropriate ethics/legal review exists.
+        
+        ---
+        
+        **Version 1.4 - 2026**  
+        **Copyright (c) 2025-2026 Lino P. Casu**  
+        **All Rights Reserved for the Commons**
+        
+Project-URL: Repository, https://github.com/error-wtf/SSZ-HOW-TO-BEAM
+Project-URL: Documentation, https://github.com/beam-ssz/beam-ssz-v0.6/docs
+Project-URL: Changelog, https://github.com/beam-ssz/beam-ssz-v0.6/blob/main/CHANGELOG.md
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: scipy>=1.10.0
+Provides-Extra: numerical
+Requires-Dist: h5py>=3.8.0; extra == "numerical"
+Provides-Extra: symbolic
+Requires-Dist: sympy>=1.11.0; extra == "symbolic"
+Provides-Extra: plots
+Requires-Dist: matplotlib>=3.7.0; extra == "plots"
+Provides-Extra: all
+Requires-Dist: h5py>=3.8.0; extra == "all"
+Requires-Dist: sympy>=1.11.0; extra == "all"
+Requires-Dist: matplotlib>=3.7.0; extra == "all"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.5.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=7.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.3.0; extra == "docs"
+Dynamic: license-file
 
-**SSZ-HOW-TO-BEAM v1.0.0** is a release-quality mathematical/numerical candidate framework for SSZ continuous-worldline bridge metrics.
+# SSZ-HOW-TO-BEAM v0.8.0
 
-**It does not claim:**
-- solved physical beaming
-- human transport
-- destructive scanning / copy reconstruction / pattern-buffer identity
-- biological safety
-- metric formation mechanism
-- experimental validation
-
-**Core principle:** Carmen bleibt Carmen because her worldline doesn't break—not because she's copied or stored in a buffer.
+**HOW TO BEAM:** A mathematical candidate framework for testing continuous worldline transfer inside the Wrede-Casu Segmented Spacetime (SSZ) framework.
 
 > **⚠️ DISCLAIMER:** Exploratory research framework. No warranty for correctness or completeness.
 
@@ -20,24 +190,17 @@
 
 | Component | Status |
 |-----------|--------|
-| **v1.0 Core** | |
-| SSZ Segmentation Rules | ✅ TESTED |
-| Effective Distance d_eff | ✅ TESTED |
-| Segment Neighborhood N(A)∩N(B) | ✅ TESTED |
-| Continuous Worldline | ✅ TESTED |
-| No-Copy Constraint | ✅ TESTED |
-| Claim Gates | ✅ IMPLEMENTED |
-| Tensor Diagnostics | ✅ IMPLEMENTED |
-| Energy Proxy/Tensor Separation | ✅ IMPLEMENTED |
-| Numerical GR Scaffold | ✅ IMPLEMENTED |
-| Observable Proxies | ✅ IMPLEMENTED |
-| **Known Limitations** | |
-| Metric formation mechanism | ❌ UNRESOLVED |
-| Nonlinear stability | ❌ UNRESOLVED |
-| Biological transport | ❌ NOT VALIDATED |
-| Experimental validation | ❌ NONE |
+| Algebraic bridge checks | ✅ PASS |
+| Worldline continuity proxy | ✅ PASS |
+| Distance reduction by ℓ₀ | ✅ PASS |
+| Tensor curvature | ⚠️ PENDING |
+| Energy conditions | ⚠️ PROXY ONLY |
+| Metric formation | ❌ UNRESOLVED |
+| Macroscopic stability | ❌ UNRESOLVED |
+| Biological-scale transport | ❌ NOT VALIDATED |
+| Experimental validation | ❌ NONE YET |
 
-> **v1.0 Status:** Release-quality SSZ continuous-worldline bridge framework. All core proxy tests pass.
+> **Current status:** algebraic bridge-metric checks pass; tensor-level curvature, energy-condition validation, metric formation and biological-scale safety remain unresolved.
 
 This repository provides a **testable mathematical laboratory** for exploring when and how beaming could be internally consistent under SSZ-like or GR-exotic bridge metrics — **not a claim that beaming is currently physically achievable**.
 

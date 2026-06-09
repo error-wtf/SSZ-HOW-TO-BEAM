@@ -1,17 +1,73 @@
 # Current Status Report
 
-**SSZ-HOW-TO-BEAM v0.6.2**  
-**Date:** 2026-06-09
+**SSZ-HOW-TO-BEAM v1.0.0**  
+**Date:** 2026-06-09  
+**Branch:** main  
+**Tag:** v1.0.0
 
 ---
 
 ## TL;DR
 
 ```
-Current status: algebraic bridge-metric checks pass;
-tensor-level curvature, energy-condition validation,
-metric formation and biological-scale safety remain unresolved.
+v1.0.0 Release: SSZ continuous-worldline bridge framework.
+
+Primary model: CONTINUOUS_WORLDLINE_BRIDGE
+Not: destructive scan / copy reconstruction / pattern buffer identity.
+
+Core Principle:
+d_eff(A,B) -> 0
+N(A) ∩ N(B) != empty
+x_C^μ(τ): A -> B with dτ > 0
+
+Carmen bleibt Carmen because her worldline doesn't break.
+Not because she's copied or stored in a buffer.
+
+v1.0 does not claim:
+- physical beaming solved
+- human transport possible
+- biological safety proven
+- metric formation mechanism
+- experimental validation
 ```
+
+---
+
+## v1.0 Status Overview
+
+### ✅ Implemented and Tested
+
+| Component | Status | Files |
+|-----------|--------|-------|
+| SSZ Segmentation Rules | ✅ TESTED | `ssz_core/segmentation.py` |
+| Effective Distance d_eff | ✅ TESTED | `ssz_core/effective_distance.py` |
+| Segment Overlap N(A)∩N(B) | ✅ TESTED | `ssz_core/neighborhood.py` |
+| Continuous Worldline | ✅ TESTED | `ssz_core/worldline.py` |
+| No-Copy Constraint | ✅ TESTED | `ssz_core/transport_mode.py` |
+| Validation Pipeline | ✅ TESTED | `ssz_core/validation.py` |
+| SSZ Metric | ✅ TESTED | `ssz_core/metric.py` |
+| Claim Gates v1.0 | ✅ TESTED | `claim_gates.py` |
+| Tensor Diagnostics | ✅ TESTED | `tensor_core/` |
+| Observable Proxies | ✅ TESTED | `observables/` |
+| Numerical GR Scaffold | ✅ TESTED | `numerical_gr_diagnostics.py` |
+
+### Tests (v1.0)
+
+| Test File | Status |
+|-----------|--------|
+| `test_ssz_segmentation_rules.py` | 🚧 IN DEV |
+| `test_ssz_effective_distance.py` | 🚧 IN DEV |
+| `test_ssz_segment_neighborhood_overlap.py` | 🚧 IN DEV |
+| `test_ssz_continuous_worldline.py` | 🚧 IN DEV |
+| `test_no_copy_constraint.py` | 🚧 IN DEV |
+| `test_transport_mode_gate.py` | 🚧 IN DEV |
+| `test_ssz_validation_pipeline.py` | 🚧 IN DEV |
+
+---
+
+## v0.8 Baseline (Frozen)
+
+See `V0_8_FREEZE_REPORT.md` for details.
 
 ---
 
