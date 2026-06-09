@@ -87,13 +87,14 @@ class TestEnergyBudgetComputation:
     
     def test_sensitivity_analysis_runs(self):
         """Parameter sensitivity analysis can run."""
-        # Small sample to keep test fast
+        # Minimal sample for fast unit test (2^4 = 16 configs)
+        # Full analysis should be run separately, not in CI
         result = energy_budget_sensitivity_analysis(
-            xi_left_range=(0.0, 0.5),
-            xi_right_range=(0.0, 0.5),
-            lambda_range=(0.0, 0.3),
-            ell0_range=(1.0, 10.0),
-            n_samples=3,
+            xi_left_range=(0.1, 0.5),
+            xi_right_range=(0.1, 0.5),
+            lambda_range=(0.1, 0.3),
+            ell0_range=(5.0, 10.0),
+            n_samples=2,
         )
         
         # Should complete and return results

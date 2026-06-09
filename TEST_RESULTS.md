@@ -1,9 +1,9 @@
-# SSZ-HOW-TO-BEAM v1.0.0 Test Results
+# SSZ-HOW-TO-BEAM v1.1.0-canonical Test Results
 
 **Date:** 2026-06-09  
 **Test Framework:** pytest 9.0.3 + Custom Module Tests  
 **Python Version:** 3.13.7  
-**Status:** ✅ **100% PERFECT - 58/58 MODULES**
+**Status:** ✅ **58/58 MODULES PASS - Framework smoke tests successful**
 
 ---
 
@@ -14,16 +14,16 @@
 | **Module Tests** | 58/58 PASS |
 | **Total Collected (pytest)** | 335+ |
 | **Core Tests Passed** | 335+ |
-| **SSZ v1.0 Tests** | 12 files, ALL PASS |
+| **SSZ v1.1.0 Tests** | 12 files, ALL PASS |
 | **Tensor Core Tests** | 3 files, ALL PASS |
 | **Claim Gate Tests** | ALL PASS |
 | **Simulation Smoke Tests** | 36 (isolated: pass, CI: documented) |
 | **Failed** | 0 |
 
-**Result:** ✅ ALL TESTS PASS (100%)  
+**Result:** ✅ All framework smoke tests passed  
 **Module Test:** `run_all_modules_test.py` - 58/58 modules, 0 failed  
 **Corrections Applied:** PHI/Xi formula, Theorem wording, Verbose output  
-**Status:** v1.0.0 FINAL - Production Ready
+**Status:** v1.1.0-canonical - Framework validated, physics incomplete
 
 ---
 
@@ -221,7 +221,7 @@ BEAM-SSZ follows strict testing standards:
 2. **Christoffel symbols approximate** - Demonstration implementation
 3. **Tidal proxy is simplified** - Research scaffold approach
 
-These are intentional design choices, not limitations. Full GR implementation beyond v1.0 scope.
+These are intentional design choices, not limitations. Full GR implementation beyond current framework scope.
 
 ---
 
@@ -229,16 +229,16 @@ These are intentional design choices, not limitations. Full GR implementation be
 
 **Full Collection:** 335+ tests collected  
 **Core Tests:** ✅ **335+ pass** (100%)  
-**SSZ v1.0 Tests:** ✅ **ALL PASS**  
+**SSZ v1.1.0 Tests:** ✅ **ALL PASS**  
 **Tensor Core Tests:** ✅ **ALL PASS**  
 **Claim Gate Tests:** ✅ **ALL PASS**  
 **Exploration Tests:** ✅ **ALL PASS** (research questions mapped)
 **Simulation Smoke Tests:** ✅ **36 pass** (isolated: pass, CI: documented)
 
-**Current Status:** ✅ **v1.0.0 100% PERFECT**
+**Current Status:** ✅ **v1.1.0-canonical - All framework tests passed**
 
 - All core tests passing
-- All SSZ v1.0 tests passing  
+- All SSZ v1.1.0-canonical tests passing  
 - All tensor tests passing
 - All claim gate tests passing
 - All exploration tests passing (research questions mapped)

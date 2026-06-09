@@ -110,22 +110,24 @@ def compute_effective_source(
     """
     # Import here to avoid circular dependency
     from ..tensor_core import compute_einstein
-    from ..ssz_core.metric import ssz_metric_tensor
-    
-    # Position array
-    position = np.array([0.0, u, theta, phi])
     
     # Get metric components at this point
     xi_val = bridge.xi(u)
     D_val = bridge.D(u)
     s_val = bridge.s(u)
     
-    # Create metric function using canonical SSZ metric
+    # CRITICAL FIX: Use bridge's own metric_tensor method, not spherical ssz_metric_tensor
+    # Bridge metric uses cylindrical throat geometry with R_B(u), not r=u
+    # This prevents singularity at u=0 (which would be r=0 in spherical)
     def g_func(x):
-        return ssz_metric_tensor(x, xi_val)
+        # Bridge metric is independent of position x, uses bridge coordinate u
+        return np.array(bridge.metric_tensor(u, theta=theta))
+    
+    # Use proper radius for curvature calculation
+    position = np.array([0.0, bridge.R(u), theta, phi])
     
     try:
-        # Compute Einstein tensor
+        # Compute Einstein tensor using bridge metric
         G = compute_einstein(g_func, position, h)
         
         # Check finiteness

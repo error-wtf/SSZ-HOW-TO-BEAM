@@ -1,16 +1,16 @@
 # Current Status Report
 
-**SSZ-HOW-TO-BEAM v1.0.0**  
+**SSZ-HOW-TO-BEAM v1.1.0-canonical**  
 **Date:** 2026-06-09  
 **Branch:** main  
-**Tag:** v1.0.0
+**Tag:** v1.1.0
 
 ---
 
 ## TL;DR
 
 ```
-v1.0.0 Release: SSZ continuous-worldline bridge framework.
+v1.1.0-canonical Release: SSZ continuous-worldline bridge framework.
 
 Primary model: CONTINUOUS_WORLDLINE_BRIDGE
 Not: destructive scan / copy reconstruction / pattern buffer identity.
@@ -20,10 +20,10 @@ d_eff(A,B) -> 0
 N(A) ∩ N(B) != empty
 x_C^μ(τ): A -> B with dτ > 0
 
-Carmen bleibt Carmen because her worldline doesn't break.
-Not because she's copied or stored in a buffer.
+Continuous worldline maintained because worldline doesn't break.
+Not because of copy reconstruction or pattern buffer identity.
 
-v1.0 does not claim:
+v1.1.0-canonical does not claim:
 - physical beaming solved
 - human transport possible
 - biological safety proven

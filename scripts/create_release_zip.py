@@ -37,6 +37,7 @@ def create_release_zip(
         ".git",
         ".gitignore",
         ".venv",
+        ".venv.old",
         ".env",
         ".pytest_cache",
         ".mypy_cache",
