@@ -482,5 +482,29 @@ def print_final_solutions():
     print("=" * 80)
 
 
+# API Compatibility Aliases for Test Compatibility
+FormationStrategy = FormationSolution
+EnergySourceStrategy = EnergySourceSolution
+
+
+class MitigationStrategyExplorer:
+    """Compatibility wrapper for FinalProblemSolver."""
+    
+    def explore_formation_strategies(self):
+        """Delegate to FinalProblemSolver.solve_formation_problem."""
+        return FinalProblemSolver.solve_formation_problem()
+    
+    def explore_energy_strategies(self):
+        """Delegate to FinalProblemSolver.solve_energy_source_problem."""
+        return FinalProblemSolver.solve_energy_source_problem()
+    
+    def get_all_strategies(self):
+        """Return all strategies."""
+        return (
+            self.explore_formation_strategies(),
+            self.explore_energy_strategies(),
+        )
+
+
 if __name__ == "__main__":
     print_final_solutions()

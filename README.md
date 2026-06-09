@@ -70,7 +70,7 @@ Run them:
 ```bash
 cd numerical_gr && python pipeline.py        # Generates HDF5 initial data
 cd symbolic && python lambda_crit_derivation.py  # Symbolic math proof
-cd human_transport && python gradual_entry_protocol.py  # Full simulation
+cd extended_body_stress_proxy && python gradual_entry_protocol.py  # Full simulation
 ```
 
 Bottom 2 require future technology (centuries+).

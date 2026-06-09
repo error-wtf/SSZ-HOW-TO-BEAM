@@ -180,10 +180,13 @@ These are documented design choices for the research scaffold.
 
 ## Conclusion
 
-**Core Test Suite:** ✅ **299 tests pass successfully**  
-**Smoke Tests:** ⚠️ **32 tests platform-dependent, not yet CI-stable**
+**Full Collection:** 302+ tests collected  
+**Core Tests:** ✅ **~299 pass** (algebraic components)  
+**Smoke Tests:** ⚠️ **Platform-dependent** (require timeout guards)
 
-The SSZ-HOW-TO-BEAM v0.6.2 algebraic core is mathematically consistent. Full validation (tensor evolution, energy conditions) remains pending.
+**Current Blocker:** Full test suite requires all simulations to have `main()` guards and proper imports.
+
+**Status:** Refactor complete, all old module names removed. Run `pytest -k "not simulation_smoke"` for stable core tests.
 
 See [CURRENT_STATUS.md](CURRENT_STATUS.md) for complete validation status.
 

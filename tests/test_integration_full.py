@@ -10,7 +10,7 @@ from beam_ssz.bridge_metric import (
 )
 from beam_ssz.xi import evaluate_xi_x
 from beam_ssz.proof_framework import BeamingProofFramework
-from beam_ssz.complete_proof import is_beaming_proven
+from beam_ssz.proof_status import check_proof_status
 from beam_ssz.einstein_solver import estimate_energy_requirements
 from beam_ssz.stability_analysis import BridgeStabilityAnalyzer
 from beam_ssz.quantum_consistency import BridgeQuantumAnalyzer
@@ -36,9 +36,9 @@ def test_full_pipeline():
     theorems = framework.prove_all_theorems(bridge, 1.0)
     assert len(theorems) == 5
     
-    # 5. Complete assessment
-    status = is_beaming_proven(bridge, 1.0)
-    assert 'completeness' in status
+    # 5. Proof status assessment
+    status = check_proof_status(bridge, 1.0)
+    assert hasattr(status, 'proof_level')
 
 
 def test_all_analyzers():

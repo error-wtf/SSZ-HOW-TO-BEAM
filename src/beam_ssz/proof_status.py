@@ -13,11 +13,24 @@ from typing import Tuple, Dict, List
 from enum import Enum
 
 from .bridge_metric import SSZBridgeMetric
-from .proof_framework import BeamingProofFramework, ProofStatus
+from .proof_framework import BeamingProofFramework, ProofStatus as _ProofStatus
 from .einstein_solver import estimate_energy_requirements
 from .stability_analysis import prove_stability_theorem
 from .quantum_consistency import prove_quantum_theorem
 from .thermodynamics import prove_thermodynamic_theorem
+
+
+class ProofLevel(str, Enum):
+    """Proof level enumeration for test compatibility."""
+    ALGEBRAIC_PASS = "ALGEBRAIC_PASS"
+    CONDITIONAL_PASS = "CONDITIONAL_PASS"
+    LINEARIZED_PASS = "LINEARIZED_PASS"
+    SEMICLASSICAL_CANDIDATE = "SEMICLASSICAL_CANDIDATE"
+    TENSOR_PENDING = "TENSOR_PENDING"
+    ENERGY_PENDING = "ENERGY_PENDING"
+    OPEN_PROBLEM = "OPEN_PROBLEM"
+    FAILED = "FAILED"
+    EXPERIMENTALLY_UNVALIDATED = "EXPERIMENTALLY_UNVALIDATED"
 
 
 class ProofCompleteness(str, Enum):
@@ -263,6 +276,45 @@ def is_beaming_proven(bridge: SSZBridgeMetric, l_normal: float = 1.0) -> dict:
         'theorems_proven': result.theorems_proven,
         'conclusion': result.overall_conclusion,
         'full_report': proof.generate_proof_document(bridge, l_normal),
+    }
+
+
+# API Compatibility Aliases for Test Compatibility
+ProofStatusResult = CompleteProofResult
+
+
+class ProofStatus:
+    """Compatibility wrapper for CompleteBeamingProof."""
+    
+    def prove_all_theorems(self, bridge: SSZBridgeMetric, l_normal: float = 1.0) -> ProofStatusResult:
+        """Delegate to CompleteBeamingProof."""
+        proof = CompleteBeamingProof()
+        return proof.prove_all_theorems(bridge, l_normal)
+    
+    def generate_proof_document(self, bridge: SSZBridgeMetric, l_normal: float = 1.0) -> str:
+        """Delegate to CompleteBeamingProof."""
+        proof = CompleteBeamingProof()
+        return proof.generate_proof_document(bridge, l_normal)
+
+
+def check_proof_status(bridge: SSZBridgeMetric, l_normal: float = 1.0) -> ProofStatusResult:
+    """Check proof status for bridge."""
+    proof = CompleteBeamingProof()
+    return proof.prove_all_theorems(bridge, l_normal)
+
+
+def is_beaming_proven(bridge: SSZBridgeMetric, l_normal: float = 1.0) -> dict:
+    """Compatibility function returning proof status as dict."""
+    result = check_proof_status(bridge, l_normal)
+    return {
+        'proven': result.proof_completeness in [ProofCompleteness.RIGOROUS, ProofCompleteness.STRONG],
+        'likely': result.proof_completeness == ProofCompleteness.MODERATE,
+        'possible': result.proof_completeness == ProofCompleteness.WEAK,
+        'insufficient': result.proof_completeness == ProofCompleteness.INSUFFICIENT,
+        'completeness': result.proof_completeness.value,
+        'theorems_proven': result.theorems_proven,
+        'conclusion': result.overall_conclusion,
+        'full_report': CompleteBeamingProof().generate_proof_document(bridge, l_normal),
     }
 
 

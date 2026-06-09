@@ -384,6 +384,39 @@ class UltimateProblemSolver:
         return None
 
 
+# API Compatibility Aliases for Test Compatibility
+CandidateStrategy = UltimateSolution
+
+
+class StrategyExplorer:
+    """Compatibility wrapper for UltimateProblemSolver."""
+    
+    def explore_extreme_weak(self):
+        """Delegate to UltimateProblemSolver.strategy_1_extreme_weak."""
+        return UltimateProblemSolver.strategy_1_extreme_weak()
+    
+    def explore_gradual_transfer(self):
+        """Delegate to UltimateProblemSolver.strategy_2_gradual_transfer."""
+        return UltimateProblemSolver.strategy_2_gradual_transfer()
+    
+    def explore_robotic_only(self):
+        """Delegate to UltimateProblemSolver.strategy_3_robotic_only."""
+        return UltimateProblemSolver.strategy_3_robotic_only()
+    
+    def explore_photon_only(self):
+        """Delegate to UltimateProblemSolver.strategy_4_photon_only."""
+        return UltimateProblemSolver.strategy_4_photon_only()
+    
+    def explore_hybrid(self):
+        """Delegate to UltimateProblemSolver.strategy_5_hybrid_approach."""
+        return UltimateProblemSolver.strategy_5_hybrid_approach()
+    
+    def find_best_strategy(self, verbose=False):
+        """Delegate to UltimateProblemSolver.find_the_ultimate_solution."""
+        solver = UltimateProblemSolver()
+        return solver.find_the_ultimate_solution(verbose=verbose)
+
+
 if __name__ == "__main__":
     solver = UltimateProblemSolver()
     ultimate = solver.find_the_ultimate_solution(verbose=True)
