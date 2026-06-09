@@ -155,8 +155,13 @@ class TestEffectiveSourceComputation:
         assert result_weak is not None
         assert result_strong is not None
 
-    def test_flat_bridge_zero_curvature(self):
-        """Flat bridge (xi=0) must have zero Einstein tensor and source."""
+    def test_unsegmented_bridge_source_finite(self):
+        """Xi=0 bridge is unsegmented, not necessarily flat; source must be finite.
+        
+        NOTE: Xi=0 means no SSZ segmentation, but the bridge still has geometric
+        structure R(u) = R₀(1 + ¼u²). This is NOT flat Minkowski space.
+        The Einstein tensor should be finite, not necessarily zero.
+        """
         bridge = SSZBridgeMetric(
             xi_left=0.0,
             xi_right=0.0,
@@ -167,11 +172,11 @@ class TestEffectiveSourceComputation:
 
         result = compute_effective_source(bridge, u=0.0)
 
+        # Must be finite (not NaN)
         assert result.diagnostics.is_finite
         assert np.all(np.isfinite(result.G))
-        # Flat metric -> zero curvature
-        assert np.allclose(result.G, 0.0, atol=1e-8)
-        assert np.allclose(result.T_eff, 0.0, atol=1e-8)
+        assert np.all(np.isfinite(result.T_eff))
+        # NOTE: G is NOT necessarily zero - bridge has R(u) geometry even when Xi=0
 
     def test_nontrivial_bridge_nonzero_curvature(self):
         """Non-trivial bridge must have non-zero Einstein tensor (anti-freeze test)."""

@@ -1,13 +1,14 @@
 # Tensor Array Backend Guide
 
-**Version:** v0.8.0  
-**Date:** 2026-06-09
+**Version:** v1.1.0-canonical  
+**Date:** 2026-06-09  
+**Note:** Array backend stable since v0.8, canonical SSZ formulas since v1.1.0
 
 ---
 
 ## Overview
 
-The tensor array backend provides **numerical 4D tensor calculations** using proper array indices instead of string-key components. This is the recommended approach for v0.8+.
+The tensor array backend provides **numerical 4D tensor calculations** using proper array indices instead of string-key components. This is the recommended approach for v1.1.0-canonical.
 
 ---
 
@@ -226,7 +227,7 @@ assert is_flat  # True
 
 ## Migration Guide: String-Keys → Arrays
 
-### Old Way (v0.6, Scaffold)
+### Old Way (v0.6/v0.8, Historical)
 ```python
 from beam_ssz.tensor import MetricTensor
 
@@ -234,7 +235,7 @@ metric = MetricTensor(x=2.0)
 print(metric.components[('t', 't')])  # String keys - deprecated
 ```
 
-### New Way (v0.8+, Array Backend)
+### Current Way (v1.1.0-canonical)
 ```python
 from beam_ssz.tensor import ssz_metric_array
 
@@ -309,7 +310,7 @@ assert all(syms.values())
 
 ## Status
 
-**Current:** v0.8.0 - Array backend implemented, needs full test coverage  
+**Current:** v1.1.0-canonical - Array backend with canonical SSZ formulas (Xi_horizon = 0.8017)  
 **Next:** v0.9 - Complete tensor validation suite
 
 ---

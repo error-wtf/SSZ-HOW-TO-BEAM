@@ -279,7 +279,7 @@ if results['failed']:
         print(f"  ❌ {name}: {error}")
 print(f"\n{'='*80}")
 if len(results['failed']) == 0:
-    print("✅ ALL MODULES PASSED - 100% PERFECT WITH MAXIMUM DETAIL")
+    print("✅ ALL MODULES PASSED - Framework detail tests successful (physics incomplete)")
 else:
     success_rate = len(results['passed']) / (len(results['passed']) + len(results['failed'])) * 100
     print(f"⚠️  Success Rate: {success_rate:.1f}%")
