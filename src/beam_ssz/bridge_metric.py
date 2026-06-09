@@ -52,7 +52,7 @@ class SSZBridgeMetric:
         xi_right: float,
         lambda_bridge: float,
         ell0: float,
-        throat_radius: float,
+        throat_radius: float = 1.0,
     ):
         """Initialize SSZ Bridge Metric.
         

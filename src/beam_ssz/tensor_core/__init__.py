@@ -15,6 +15,7 @@ from .metric_backend import (
     minkowski_spherical,
     ssz_metric,
     metric_from_bridge_candidate,
+    flat_bridge_limit,
 )
 from .finite_differences import central_diff, second_diff
 from .christoffel import compute_christoffel
@@ -36,6 +37,7 @@ __all__ = [
     "minkowski_spherical",
     "ssz_metric",
     "metric_from_bridge_candidate",
+    "flat_bridge_limit",
     "central_diff",
     "second_diff",
     "compute_christoffel",

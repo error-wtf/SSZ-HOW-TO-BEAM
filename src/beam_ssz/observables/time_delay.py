@@ -53,8 +53,10 @@ def compute_photon_delay(
     Returns:
         TimeDelayResult with delays
     """
-    # Regime classification
-    regime_emitter = classify_regime(r_emitter, r_s)
+    # Regime classification - compute Xi from r_emitter and r_s
+    # Xi = r_s / r (normalized)
+    xi_emitter = r_s / r_emitter if r_emitter > 0 else 0.0
+    regime_emitter = classify_regime(xi_emitter)
     
     # Geometric delay (flat spacetime)
     d_geom = abs(r_receiver - r_emitter)  # c=1, so distance = time

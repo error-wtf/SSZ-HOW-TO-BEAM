@@ -142,3 +142,18 @@ def metric_from_bridge_candidate(
         'Xi': Xi,
         'status': 'OK',
     }
+
+
+def flat_bridge_limit() -> Tuple[float, float]:
+    """Return flat bridge limit parameters (Xi=0, lambda=0).
+    
+    In the flat bridge limit:
+    - Xi = 0 (no segmentation)
+    - D = 1 (no time dilation)
+    - s = 1 (no spatial stretching)
+    - lambda = 0 (no bridge coupling)
+    
+    Returns:
+        (D, s) = (1.0, 1.0)
+    """
+    return 1.0, 1.0

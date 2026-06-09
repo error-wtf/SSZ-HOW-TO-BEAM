@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "beam-ssz"
-version = "0.8.0"
+version = "1.0.0"
 description = "Mathematical Research Scaffold for Real-Beaming in Segmented Spacetime (SSZ)"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -48,8 +48,8 @@ docs = [
 
 [project.urls]
 Repository = "https://github.com/error-wtf/SSZ-HOW-TO-BEAM"
-Documentation = "https://github.com/beam-ssz/beam-ssz-v0.6/docs"
-Changelog = "https://github.com/beam-ssz/beam-ssz-v0.6/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/error-wtf/SSZ-HOW-TO-BEAM/tree/main/docs"
+Changelog = "https://github.com/error-wtf/SSZ-HOW-TO-BEAM/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
