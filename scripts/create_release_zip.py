@@ -84,20 +84,20 @@ def create_release_zip(
             
             skip = False
             for pattern in all_excludes:
-                # Match exact path components
+                # Match exact path components (e.g., exact folder name)
                 if pattern in path_parts:
                     skip = True
                     break
-                # Check if any part of path contains the pattern (for subdirs like __pycache__)
-                if any(pattern in part for part in path_parts):
+                # Check specific file extensions
+                if pattern.startswith('*.') and str_path.endswith(pattern[1:]):
                     skip = True
                     break
-                # Also check for file extensions and patterns at end of path
-                if str_path.endswith(pattern) or str_path.startswith(pattern + '/'):
+                # Check exact filename matches at end of path
+                if str_path.endswith('/' + pattern) or str_path == pattern:
                     skip = True
                     break
-                # Glob matching for patterns like *.pyc
-                if '*' in pattern and file_path.match(pattern):
+                # Check exact start of path
+                if str_path.startswith(pattern + '/'):
                     skip = True
                     break
                     

@@ -196,6 +196,70 @@ class SSZBridgeMetric:
             total += self.s(u) * self.ell0 * du
         return total
     
+    @property
+    def left_distance(self) -> float:
+        """Distance from bridge center to left endpoint (A).
+        
+        Returns:
+            Distance in meters
+        """
+        return self.ell0 * (1.0 + self.xi_left)
+    
+    @property
+    def right_distance(self) -> float:
+        """Distance from bridge center to right endpoint (B).
+        
+        Returns:
+            Distance in meters
+        """
+        return self.ell0 * (1.0 + self.xi_right)
+    
+    def get_bridge_profile(self, n_points: int = 100) -> dict:
+        """Return bridge profile for SSZ continuous-worldline proxy tests.
+        
+        This is a proxy diagnostic, not a physical transport proof.
+        
+        Args:
+            n_points: Number of sample points along bridge
+            
+        Returns:
+            Dictionary with bridge profile data:
+            - 'u': bridge coordinate [0, 1] (monotonic)
+            - 'Xi': segment density at each point
+            - 'D': time dilation factor
+            - 's': spatial stretching factor
+            - 'weight_left': weight toward left endpoint (A)
+            - 'weight_right': weight toward right endpoint (B)
+            - 'dXi_du': derivative of Xi with respect to u
+        """
+        # u from 0 to 1 (normalized bridge coordinate)
+        u_norm = np.linspace(0.0, 1.0, n_points)
+        
+        # Convert to internal coordinate [-1, 1]
+        u_internal = 2.0 * u_norm - 1.0
+        
+        Xi = np.array([self.xi(u) for u in u_internal])
+        D = 1.0 / (1.0 + Xi)
+        s = 1.0 + Xi
+        
+        # Weight functions (interpolation weights)
+        w_values = np.array([self.w(u) for u in u_internal])
+        weight_left = 1.0 - w_values
+        weight_right = w_values
+        
+        # Derivative dXi/du (finite difference)
+        dXi_du = np.gradient(Xi, u_norm)
+        
+        return {
+            'u': u_norm,
+            'Xi': Xi,
+            'D': D,
+            's': s,
+            'weight_left': weight_left,
+            'weight_right': weight_right,
+            'dXi_du': dXi_du,
+        }
+    
     def timelike_norm(self, u: float, dt_dtau: float, du_dtau: float) -> float:
         """Compute worldline norm g_μνu^μu^ν.
         
