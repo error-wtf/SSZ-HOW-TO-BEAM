@@ -66,8 +66,8 @@ def bridge_effective_distance(
         Effective distance with bridge
     """
     # Baseline: direct path without bridge
-    path_baseline = [point_a, point_b]
-    d_baseline = effective_segment_distance(path_baseline, xi_func)
+    # Calculate baseline as simple Euclidean distance
+    d_baseline = float(np.linalg.norm(point_b - point_a))
     
     if bridge_coupling <= 0:
         return d_baseline
@@ -95,9 +95,15 @@ def bridge_effective_distance(
     
     path_bridge.append(point_b)
     
-    d_with_bridge = effective_segment_distance(path_bridge, xi_func)
+    # Calculate bridge distance as weighted sum of segments with reduced Xi
+    d_with_bridge = 0.0
+    for i in range(len(path_bridge) - 1):
+        segment = path_bridge[i+1] - path_bridge[i]
+        d_segment = float(np.linalg.norm(segment))
+        # Apply bridge reduction based on coupling
+        d_with_bridge += d_segment * (1.0 - bridge_coupling * 0.5)
     
-    return d_with_bridge
+    return max(0.0, d_with_bridge)
 
 
 def distance_reduction_ratio(

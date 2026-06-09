@@ -80,13 +80,20 @@ def create_release_zip(
             # Check exclusions
             relative_path = file_path.relative_to(repo_root)
             str_path = str(relative_path)
+            path_parts = relative_path.parts
             
             skip = False
             for pattern in all_excludes:
-                if pattern in str_path:
+                # Match against path components, not substrings
+                if pattern in path_parts:
                     skip = True
                     break
-                if file_path.match(pattern):
+                # Also check for file extensions and patterns at end of path
+                if str_path.endswith(pattern) or str_path.startswith(pattern):
+                    skip = True
+                    break
+                # Glob matching for patterns like *.pyc
+                if '*' in pattern and file_path.match(pattern):
                     skip = True
                     break
                     
