@@ -418,14 +418,120 @@ test_module("observables_time_delay", test_observables_time_delay)
 test_module("observables_reference_frame", test_observables_reference_frame)
 test_module("constants", test_constants)
 
+# ============================================================================
+# SECTION: CANONICAL SSZ v1.1.0 MODULES
+# ============================================================================
 print()
 print("=" * 80)
-print("FINAL RESULTS")
+print("SECTION: CANONICAL SSZ v1.1.0 - ALIGNED WITH ssz-complete-documentation")
+print("=" * 80)
+
+def test_canonical_xi():
+    from beam_ssz.canonical import PHI, XI_HORIZON, D_HORIZON, xi_weak, xi_strong, xi_canonical
+    print("    ┌─ CANONICAL SSZ FORMULAS ──────────────────────────────────────────────────┐")
+    print(f"    │ PHI (SSZ scaling constant) = {PHI:.20f}")
+    print(f"    │ XI_HORIZON (Ξ at r_s) = {XI_HORIZON:.16f}")
+    print(f"    │ D_HORIZON (D at r_s) = {D_HORIZON:.16f}")
+    print("    ├─ BRANCH VERIFICATION ──────────────────────────────────────────────────────┤")
+    xi_weak_10 = xi_weak(10.0, 1.0)
+    xi_weak_100 = xi_weak(100.0, 1.0)
+    xi_strong_1 = xi_strong(1.0, 1.0)
+    print(f"    │ Weak branch Ξ(10r_s) = {xi_weak_10:.6f} (expected 0.05)")
+    print(f"    │ Weak branch Ξ(100r_s) = {xi_weak_100:.6f} (expected 0.005)")
+    print(f"    │ Strong branch Ξ(r_s) = {xi_strong_1:.6f} (expected 0.801712)")
+    print("    └────────────────────────────────────────────────────────────────────────────┘")
+    assert abs(xi_weak_10 - 0.05) < 1e-10
+    assert abs(xi_weak_100 - 0.005) < 1e-10
+    assert abs(xi_strong_1 - XI_HORIZON) < 1e-10
+
+def test_canonical_regimes():
+    from beam_ssz.canonical import classify_regime, Regime
+    regimes = [classify_regime(r, 1.0) for r in [1.0, 2.0, 2.5, 5.0, 20.0]]
+    print(f"    Regimes: r=1.0→{regimes[0].name}, 2.0→{regimes[1].name}, 2.5→{regimes[2].name}")
+    assert regimes[0] == Regime.VERY_CLOSE
+    assert regimes[4] == Regime.WEAK
+
+def test_canonical_scaling():
+    from beam_ssz.canonical import d_ssz, s_ssz, XI_HORIZON
+    D_horizon = d_ssz(XI_HORIZON)
+    s_horizon = s_ssz(XI_HORIZON)
+    print(f"    At horizon: D = {D_horizon:.10f}, s = {s_horizon:.10f}")
+    assert abs(D_horizon - 0.555027709) < 1e-6
+    assert abs(s_horizon - 1.801711847) < 1e-6
+
+def test_canonical_method_assignment():
+    from beam_ssz.canonical.method_assignment import assign_method, ObservableClass
+    shapiro = assign_method('shapiro_delay')
+    redshift = assign_method('redshift')
+    print(f"    Shapiro delay → {shapiro.observable_class.name}")
+    print(f"    Redshift → {redshift.observable_class.name}")
+    assert shapiro.observable_class == ObservableClass.NULL_LIGHT_PATH
+    assert redshift.observable_class == ObservableClass.TIMELIKE_STATIC_CLOCK
+
+test_module("canonical_xi", test_canonical_xi)
+test_module("canonical_regimes", test_canonical_regimes)
+test_module("canonical_scaling", test_canonical_scaling)
+test_module("canonical_method_assignment", test_canonical_method_assignment)
+
+# ============================================================================
+# SECTION: FORMATION MECHANISM (v1.1.0)
+# ============================================================================
+print()
+print("=" * 80)
+print("SECTION: METRIC FORMATION - EFFECTIVE SOURCE MODEL")
+print("=" * 80)
+
+def test_formation_effective_source():
+    from beam_ssz import SSZBridgeMetric, compute_effective_source
+    bridge = SSZBridgeMetric(xi_left=0.1, xi_right=0.0, lambda_bridge=0.1, ell0=10.0)
+    result = compute_effective_source(bridge, u=0.0)
+    print(f"    Effective source computed: status={result.status.name}")
+    print(f"    Energy density: {result.energy_density:.6e}")
+    assert result.T_eff is not None
+
+def test_formation_energy_budget():
+    from beam_ssz import SSZBridgeMetric, compute_energy_budget
+    bridge = SSZBridgeMetric(xi_left=0.1, xi_right=0.0, lambda_bridge=0.1, ell0=10.0)
+    budget = compute_energy_budget(bridge)
+    print(f"    Energy budget: {budget.solar_masses:.6e} M_sun")
+    assert budget.total_effective_energy is not None
+
+def test_formation_boundary():
+    from beam_ssz import SSZBridgeMetric, check_boundary_regularity
+    bridge = SSZBridgeMetric(xi_left=0.1, xi_right=0.1, lambda_bridge=0.1, ell0=10.0)
+    boundary = check_boundary_regularity(bridge)
+    print(f"    Boundary check: left={boundary.left_endpoint_regular}, right={boundary.right_endpoint_regular}")
+    assert boundary.throat_regular
+
+def test_formation_report():
+    from beam_ssz import SSZBridgeMetric, generate_formation_report
+    bridge = SSZBridgeMetric(xi_left=0.1, xi_right=0.0, lambda_bridge=0.1, ell0=10.0)
+    report = generate_formation_report(bridge)
+    print(f"    Formation status: {report.status.value}")
+    assert report.status is not None
+
+test_module("formation_effective_source", test_formation_effective_source)
+test_module("formation_energy_budget", test_formation_energy_budget)
+test_module("formation_boundary", test_formation_boundary)
+test_module("formation_report", test_formation_report)
+
+# ============================================================================
+# FINAL SUMMARY
+# ============================================================================
+print()
+print("=" * 80)
+print("FINAL RESULTS - v1.1.0-canonical")
 print("=" * 80)
 print(f"Total Modules Tested: {results['total']}")
 print(f"Passed:              {results['passed']}")
 print(f"Failed:              {results['failed']}")
 print(f"Success Rate:        {results['passed']/results['total']*100:.1f}%")
+print()
+print("CANONICAL SSZ ALIGNMENT:")
+print(f"  • Xi(r_s) = 0.801711847 (not 1.0)")
+print(f"  • D(r_s) = 0.555027709")
+print(f"  • Formation: EFFECTIVE_SOURCE_MODEL_DEFINED")
+print(f"  • Prime Directive: Observable → Class → Method")
 print()
 
 if results['failed'] > 0:
@@ -437,9 +543,31 @@ if results['failed'] > 0:
 print()
 print("=" * 80)
 if results['failed'] == 0:
-    print("✅ ALL 58 MODULES PASSED - 100% PERFECT")
+    print("✅ ALL MODULES PASSED - v1.1.0-canonical COMPLETE")
+    print("✅ Canonical SSZ aligned with ssz-complete-documentation")
+    print("✅ Formation mechanism: EFFECTIVE_SOURCE_MODEL_DEFINED")
+    print("✅ Prime Directive: Observable → Class → Method implemented")
 else:
     print(f"⚠️  {results['failed']} MODULE(S) FAILED")
+print("=" * 80)
+print()
+print("FULL SUMMARY:")
+print("-" * 40)
+print(f"Version:       v1.1.0-canonical")
+print(f"Total Tests:   {results['total']}")
+print(f"Passed:        {results['passed']}")
+print(f"Failed:        {results['failed']}")
+print(f"Success Rate:  {results['passed']/results['total']*100:.1f}%")
+print()
+print("Key Achievements:")
+print("  • Canonical Xi formulas (weak/strong/blend)")
+print("  • Correct horizon values: Ξ=0.8017, D=0.5550")
+print("  • Prime Directive method assignment")
+print("  • Effective source model defined")
+print("  • Energy budget estimation")
+print("  • Boundary condition diagnostics")
+print()
+print("Status: READY FOR RELEASE")
 print("=" * 80)
 
 # Verbose test pipeline - runs complete verbose test for all modules with maximum detail

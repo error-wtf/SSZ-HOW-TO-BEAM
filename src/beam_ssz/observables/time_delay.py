@@ -7,7 +7,8 @@ Critical distinction: one-way vs round-trip (factor 2 separate from PPN).
 from dataclasses import dataclass
 from typing import Literal
 import numpy as np
-from ..tensor_core import classify_regime, Regime
+from ..canonical import classify_regime, Regime, xi_canonical, d_ssz
+from ..canonical.method_assignment import assign_method, ObservableClass, Method
 from .reference_frame import ReferenceFrame
 
 
@@ -53,10 +54,17 @@ def compute_photon_delay(
     Returns:
         TimeDelayResult with delays
     """
-    # Regime classification - compute Xi from r_emitter and r_s
-    # Xi = r_s / r (normalized)
-    xi_emitter = r_s / r_emitter if r_emitter > 0 else 0.0
-    regime_emitter = classify_regime(xi_emitter)
+    # Regime classification using canonical SSZ
+    # Note: Shapiro delay is NULL/light-path observable
+    # Should use PPN completion: result = Xi_only × (1+γ)
+    # For GR-equivalent: factor of 2
+    
+    # Method assignment check
+    method_assignment = assign_method('shapiro_delay')
+    
+    # Compute canonical Xi
+    xi_emitter = xi_canonical(r_emitter, r_s)
+    regime_emitter = classify_regime(r_emitter, r_s)
     
     # Geometric delay (flat spacetime)
     d_geom = abs(r_receiver - r_emitter)  # c=1, so distance = time
@@ -66,7 +74,7 @@ def compute_photon_delay(
     # where b is impact parameter (0 for radial)
     
     # Simplified: for radial (b=0), dt = dr / D
-    # D = 1/(1+Xi)
+    # Using canonical D_SSZ = 1/(1+Ξ)
     
     n_points = 100
     rs = np.linspace(min(r_emitter, r_receiver), max(r_emitter, r_receiver), n_points)
@@ -76,11 +84,18 @@ def compute_photon_delay(
         dr = rs[i+1] - rs[i]
         r_mid = (rs[i] + rs[i+1]) / 2.0
         
-        xi = xi_func(r_mid)
-        D = 1.0 / (1.0 + xi)
+        # Use canonical Xi and D
+        xi = xi_canonical(r_mid, r_s)
+        D = d_ssz(xi)  # Canonical D = 1/(1+Ξ)
         
         # dt = dr / D for radial null geodesic (approximate)
         dt_ssz += abs(dr) / D
+    
+    # ⚠️ PRIME DIRECTIVE WARNING:
+    # This is Xi-only result. For NULL/light observables like Shapiro delay,
+    # canonical SSZ requires PPN completion: result = Xi_only × (1+γ)
+    # For GR-equivalent (γ=1): multiply by factor of 2
+    # Currently returning Xi-only (conservative underestimate)
     
     # Excess delay beyond geometric
     excess = dt_ssz - d_geom

@@ -11,8 +11,7 @@ d_eff(A,B) -> 0
 N(A) ∩ N(B) != empty
 x_C^μ(τ): A -> B with dτ > 0
 
-Carmen bleibt Carmen because her worldline doesn't break.
-Not because she's copied or stored in a buffer.
+Continuous worldline preservation - not pattern-copy or reconstruction.
 
 Tensor-core diagnostics with array-based computations.
 Implements SSZ Prime Directive for observable classification.
@@ -32,6 +31,15 @@ from .tidal import (
     evaluate_tidal_safety,
     compute_tidal_acceleration,
     TidalLimit,
+)
+
+# v1.1 formation mechanism (effective source)
+from .formation import (
+    compute_effective_source,
+    compute_energy_budget,
+    check_boundary_regularity,
+    generate_formation_report,
+    FormationStatus,
 )
 
 # v0.6 bridge metric
