@@ -155,6 +155,44 @@ class TestEffectiveSourceComputation:
         assert result_weak is not None
         assert result_strong is not None
 
+    def test_flat_bridge_zero_curvature(self):
+        """Flat bridge (xi=0) must have zero Einstein tensor and source."""
+        bridge = SSZBridgeMetric(
+            xi_left=0.0,
+            xi_right=0.0,
+            lambda_bridge=0.0,
+            ell0=1.0,
+            throat_radius=1.0,
+        )
+
+        result = compute_effective_source(bridge, u=0.0)
+
+        assert result.diagnostics.is_finite
+        assert np.all(np.isfinite(result.G))
+        # Flat metric -> zero curvature
+        assert np.allclose(result.G, 0.0, atol=1e-8)
+        assert np.allclose(result.T_eff, 0.0, atol=1e-8)
+
+    def test_nontrivial_bridge_nonzero_curvature(self):
+        """Non-trivial bridge must have non-zero Einstein tensor (anti-freeze test)."""
+        bridge = SSZBridgeMetric(
+            xi_left=0.1,
+            xi_right=0.5,
+            lambda_bridge=0.2,
+            ell0=1.0,
+            throat_radius=1.0,
+        )
+
+        result = compute_effective_source(bridge, u=0.25)
+
+        assert result.diagnostics.is_finite
+        assert np.all(np.isfinite(result.G))
+
+        # CRITICAL: If g_func ignores x, G will be all zeros.
+        # This test verifies that g_func actually depends on u.
+        assert np.max(np.abs(result.G)) > 1e-12, \
+            "G is effectively zero - g_func may be frozen, not depending on x[1]=u"
+
 
 if __name__ == '__main__':
     pytest.main([__file__, '-v'])

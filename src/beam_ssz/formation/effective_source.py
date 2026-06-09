@@ -116,21 +116,23 @@ def compute_effective_source(
     D_val = bridge.D(u)
     s_val = bridge.s(u)
     
-    # CRITICAL FIX: Use bridge's own metric_tensor method, not spherical ssz_metric_tensor
-    # Bridge metric uses cylindrical throat geometry with R_B(u), not r=u
-    # This prevents singularity at u=0 (which would be r=0 in spherical)
-    # 
-    # KNOWN LIMITATION (v1.1.0): g_func currently freezes u, so the metric
-    # does not vary with position x during differentiation. This yields G=0
-    # and T_eff=0, which is finite but not yet a full coordinate-dependent
-    # bridge curvature calculation. Full bridge Einstein tensor reconstruction
-    # along u remains an open research problem.
+    # REAL FIX: Bridge-coordinate metric with proper x-dependence
+    # Coordinate convention:
+    #   x[0] = t
+    #   x[1] = u (bridge coordinate)
+    #   x[2] = theta
+    #   x[3] = phi
+    #
+    # The metric MUST depend on x[1]=u, otherwise finite differences
+    # see a constant metric and compute G_munu = 0 everywhere.
     def g_func(x):
-        # Bridge metric evaluated at fixed u (limitation: no x-dependence)
-        return np.array(bridge.metric_tensor(u, theta=theta))
+        u_x = float(x[1])
+        theta_x = float(x[2])
+        return np.array(bridge.metric_tensor(u_x, theta=theta_x), dtype=float)
     
-    # Use proper radius for curvature calculation
-    position = np.array([0.0, bridge.R(u), theta, phi])
+    # Use bridge coordinate u, NOT bridge.R(u)
+    # R(u) is a metric function, not the coordinate for differentiation
+    position = np.array([0.0, float(u), float(theta), float(phi)], dtype=float)
     
     try:
         # Compute Einstein tensor using bridge metric

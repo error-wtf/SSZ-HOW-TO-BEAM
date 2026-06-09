@@ -91,18 +91,14 @@ def check_boundary_regularity(
             det_finite = np.isfinite(det) and abs(det) > 1e-15
             
             # Check curvature (via Ricci scalar as proxy)
-            # For bridge metric, we use the interpolated Xi value
-            # Create metric function that works with bridge coordinates
-            xi_val = bridge.xi(u)
-            
-            # Bridge metric uses u coordinate, not r - create compatible wrapper
+            # REAL FIX: g_func must depend on x[1]=u for proper differentiation
             def g_func(x):
-                # x = [t, r, theta, phi] but bridge uses u
-                # Approximate: use the radial value as proxy for position
-                return np.array(bridge.metric_tensor(u, theta=np.pi/2))
+                u_x = float(x[1])
+                theta_x = float(x[2])
+                return np.array(bridge.metric_tensor(u_x, theta=theta_x), dtype=float)
             
-            # Use flat position for curvature check
-            position = np.array([0.0, float(bridge.R(u)), np.pi/2, 0.0])
+            # Use bridge coordinate u, NOT bridge.R(u)
+            position = np.array([0.0, float(u), np.pi/2, 0.0], dtype=float)
             try:
                 R = ricci_scalar(g_func, position, h)
                 R_finite = np.isfinite(R) and abs(R) < 1e15
