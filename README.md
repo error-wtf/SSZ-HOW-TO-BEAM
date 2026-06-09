@@ -56,7 +56,7 @@ See [LICENSE](LICENSE) for full terms.
 |-------|----------|-----------------|--------|
 | **Numerical-GR scaffold** | `numerical_gr/pipeline.py` - ADM initial data generator | ⚠️ **EXECUTABLE** (constraint violation ~7.67e-02, not yet converged) |
 | **λ_crit Threshold** | `symbolic/lambda_crit_derivation.py` - SymPy derivation | ✅ **EXECUTABLE** |
-| **Biological-scale stress** | `human_transport/gradual_entry_protocol.py` - Extended-body proxy | ⚠️ **EXECUTABLE** (default params UNSAFE, needs param search) |
+| **Biological-scale stress** | `extended_body_stress_proxy/gradual_entry_protocol.py` - Extended-body proxy | ⚠️ **EXECUTABLE** (default params UNSAFE, needs param search) |
 | **Metric Formation** | `docs/25_unresolved_solutions.md` - DCE protocol | ⚠️ **SPECULATIVE** |
 | **Energy Source** | `docs/25_unresolved_solutions.md` - Dyson-Casimir | ⚠️ **SPECULATIVE** |
 

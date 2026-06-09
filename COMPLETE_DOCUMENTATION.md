@@ -1,6 +1,8 @@
-# SSZ-HOW-TO-BEAM v0.6.2 - Documentation
+# SSZ-HOW-TO-BEAM v0.8.0 - Documentation
 
 **Reference for the SSZ-HOW-TO-BEAM Mathematical Framework**
+
+**⚠️ CURRENT_STATUS.md is authoritative for validation status. This document is historical/generated summary.**
 
 ---
 

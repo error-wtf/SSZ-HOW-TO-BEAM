@@ -1,4 +1,4 @@
-# SSZ-HOW-TO-BEAM v0.6.2 Test Results
+# SSZ-HOW-TO-BEAM v0.8.0 Test Results
 
 **Date:** 2026-06-09  
 **Test Framework:** pytest 9.0.3  
@@ -10,13 +10,13 @@
 
 | Metric | Value |
 |--------|-------|
-| **Total Tests** | 331 |
-| **Core Tests Passed** | 299 (100%) |
-| **Smoke Tests** | 32 (platform-dependent) |
+| **Total Collected** | 335 |
+| **Core Tests Passed** | 299 |
+| **Simulation Smoke Tests** | 36 (isolated: pass, CI: needs timeout hardening) |
 | **Failed** | 0 (core only) |
 
 **Result:** ✅ 299 CORE TESTS PASS  
-**Note:** 32 smoke tests require specific paths/platform - skip with `pytest -k "not simulation_smoke"`
+**Note:** Core tests green. 36 smoke tests pass in isolation; full pytest termination still needs timeout hardening.
 
 ---
 
@@ -117,7 +117,7 @@
 
 ### Run All Tests
 ```bash
-cd /home/error/Downloads/BEAM-SSZ-v0.6
+cd /path/to/SSZ-HOW-TO-BEAM
 python -m pytest tests/ -v
 ```
 
@@ -180,13 +180,13 @@ These are documented design choices for the research scaffold.
 
 ## Conclusion
 
-**Full Collection:** 302+ tests collected  
-**Core Tests:** ✅ **~299 pass** (algebraic components)  
-**Smoke Tests:** ⚠️ **Platform-dependent** (require timeout guards)
+**Full Collection:** 335 tests collected  
+**Core Tests:** ✅ **299 pass** (algebraic components)  
+**Simulation Smoke Tests:** ⚠️ **36 pass in isolation** (full pytest termination: CI hardening pending)
 
-**Current Blocker:** Full test suite requires all simulations to have `main()` guards and proper imports.
+**Current Status:** Core API stable. Smoke tests executable but need timeout guards for clean CI termination.
 
-**Status:** Refactor complete, all old module names removed. Run `pytest -k "not simulation_smoke"` for stable core tests.
+**Recommended run:** `pytest -k "not simulation_smoke"` for stable core tests.
 
 See [CURRENT_STATUS.md](CURRENT_STATUS.md) for complete validation status.
 
