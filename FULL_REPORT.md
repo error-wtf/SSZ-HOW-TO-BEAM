@@ -1,8 +1,8 @@
 # SSZ-HOW-TO-BEAM v1.0.0 - FULL TEST REPORT
 
-**Generated:** 2026-06-09T11:38:19.121591
-**Version:** unknown
-**Python:** 3.13.7
+**Generated:** 2026-07-01T01:25:39.409006
+**Version:** 1.1.0
+**Python:** 3.13.2
 **Platform:** linux
 
 ---
@@ -11,11 +11,11 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Tests | 0 |
-| Passed | 0 (0.0%) |
+| Total Tests | 24 |
+| Passed | 24 (100.0%) |
 | Failed | 0 |
-| Test Suites | 0 |
-| Total Duration | 0.03s |
+| Test Suites | 7 |
+| Total Duration | 0.46s |
 
 **✅ STATUS: ALL TESTS PASSED (100%)**
 
@@ -25,16 +25,146 @@ The SSZ-HOW-TO-BEAM v1.0.0 framework is fully functional and ready for use.
 
 ## Detailed Test Results by Suite
 
+### Import Tests
+
+*Basic module imports*
+
+- **Tests:** 5
+- **Passed:** 5 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| beam_ssz | ✅ PASS | 0.000s | Import successful |
+| ssz_core | ✅ PASS | 0.000s | Import successful |
+| tensor_core | ✅ PASS | 0.000s | Import successful |
+| observables | ✅ PASS | 0.000s | Import successful |
+| claim_gates | ✅ PASS | 0.000s | Import successful |
+
+---
+
+### SSZ Core Tests
+
+*SSZ segmentation, d_eff, worldline*
+
+- **Tests:** 8
+- **Passed:** 8 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| xi_positive | ✅ PASS | 0.000s | Test passed |
+| d_formula_correct | ✅ PASS | 0.000s | Test passed |
+| d_positive | ✅ PASS | 0.000s | Test passed |
+| s_positive | ✅ PASS | 0.000s | Test passed |
+| segmentation_validation | ✅ PASS | 0.000s | Test passed |
+| d_eff_finite | ✅ PASS | 0.000s | Test passed |
+| no_copy_continuous | ✅ PASS | 0.000s | Test passed |
+| no_copy_blocks_copy | ✅ PASS | 0.000s | Test passed |
+
+---
+
+### Tensor Core Tests
+
+*Minkowski and SSZ metric tensors*
+
+- **Tests:** 4
+- **Passed:** 4 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| minkowski_shape | ✅ PASS | 0.000s | Tensor property correct |
+| minkowski_gtt | ✅ PASS | 0.000s | Tensor property correct |
+| ssz_metric_shape | ✅ PASS | 0.000s | Tensor property correct |
+| ssz_gtt_formula | ✅ PASS | 0.000s | Tensor property correct |
+
+---
+
+### Claim Gate Tests
+
+*Evidence-based claim evaluation*
+
+- **Tests:** 3
+- **Passed:** 3 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| ssz_segmentation_allowed | ✅ PASS | 0.000s | Claim gate working |
+| biological_forbidden | ✅ PASS | 0.000s | Claim gate working |
+| experimental_forbidden | ✅ PASS | 0.000s | Claim gate working |
+
+---
+
+### Observable Tests
+
+*Phase, delay, redshift proxies*
+
+- **Tests:** 1
+- **Passed:** 1 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| redshift_proxy | ✅ PASS | 0.000s | z=0.0000 |
+
+---
+
+### Exploration Tests
+
+*Research questions and unknowns*
+
+- **Tests:** 2
+- **Passed:** 2 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| biological_status_documented | ✅ PASS | 0.000s | Status: NOT_VALIDATED |
+| experimental_status_documented | ✅ PASS | 0.000s | Status: NONE |
+
+---
+
+### Integration Tests
+
+*End-to-end workflows*
+
+- **Tests:** 1
+- **Passed:** 1 (100.0%)
+- **Failed:** 0
+- **Duration:** 0.000s
+
+| Test | Status | Duration | Message |
+|------|--------|----------|---------|
+| full_validation_workflow | ✅ PASS | 0.000s | Report structure complete |
+
+---
+
 ## Test Assessments
 
 ### What the Tests Confirm
 
+✅ **SSZ Core:** Xi/D/s algebra is internally consistent
+✅ **Distance Calculation:** d_eff reduction is mathematically valid
+✅ **No-Copy:** Constraint enforcement is working
+✅ **Tensor Engine:** Minkowski and SSZ metric calculations are correct
+✅ **Claim Gates:** Scientific honesty enforcement is working
+✅ **Safety:** Overclaims are correctly blocked
+🔍 **Biological:** Effects remain unknown - research needed
+🔍 **Experimental:** No experiments conducted yet - roadmap exists
 
 ### Scientific Position
 
 Based on these test results:
 
-> **BEAM-SSZ v1.0.0 provides a mathematically consistent framework for
+> **BEAM-SSZ v1.1.0-canonical provides a mathematically consistent framework for
 > SSZ continuous-worldline bridge metrics. The algebraic structure is
 > validated; biological and experimental effects remain unexplored and
 > are correctly marked as unknown rather than claimed as validated.
@@ -94,14 +224,15 @@ Based on these test results:
 ```json
 {
   "version": "1.0.0",
-  "date": "2026-06-09T11:38:19.121591",
-  "python_version": "3.13.7 (main, Mar  3 2026, 12:19:54) [GCC 15.2.0]",
-  "platform": "linux"
+  "date": "2026-07-01T01:25:39.409006",
+  "python_version": "3.13.2 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 18:56:02) [GCC 11.2.0]",
+  "platform": "linux",
+  "beam_ssz_version": "1.1.0"
 }
 ```
 
 ---
 
-*Generated by run_all_tests.py - SSZ-HOW-TO-BEAM v1.0.0*
+*Generated by run_all_tests.py - SSZ-HOW-TO-BEAM v1.1.0-canonical*
 
 © 2026 Carmen N. Wrede, Lino P. Casu

@@ -150,7 +150,10 @@ def evaluate_claim_gate(
     forbidden = rules.get("forbidden", [])
     
     # Determine status
-    if not tests_passed:
+    if category in [ClaimCategory.BIOLOGICAL_SAFETY, ClaimCategory.EXPERIMENTAL_VALIDATION]:
+        status = ClaimStatus.FORBIDDEN
+        notes = "This claim is strictly FORBIDDEN in version 1.1.0 (exploratory status only)."
+    elif not tests_passed:
         status = ClaimStatus.FAILED
         notes = f"Tests failed or not run (required: {required.name})"
     elif actual_evidence.value < required.value:

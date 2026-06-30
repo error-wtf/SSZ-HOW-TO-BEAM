@@ -174,10 +174,7 @@ class ComprehensiveTestRunner:
                 
                 # Distance tests
                 ("d_eff_finite", lambda: (
-                    effective_segment_distance([
-                        np.array([0.0, 10.0, np.pi/2, 0.0]),
-                        np.array([0.0, 11.0, np.pi/2, 0.0])
-                    ], lambda r: 0.1) > 0
+                    effective_segment_distance(10.0, 0.5) > 0
                 )),
                 
                 # No-copy tests
@@ -261,13 +258,13 @@ class ComprehensiveTestRunner:
             
             tests = [
                 ("ssz_segmentation_allowed", lambda: (
-                    evaluate_claim_gate(ClaimCategory.SSZ_SEGMENTATION, EvidenceLevel.PROXY_TESTED, True).status == ClaimStatus.ALLOWED
+                    evaluate_claim_gate(ClaimCategory.SSZ_SEGMENTATION, EvidenceLevel.PROXY_TESTED, True)['status'] == ClaimStatus.ALLOWED
                 )),
                 ("biological_forbidden", lambda: (
-                    evaluate_claim_gate(ClaimCategory.BIOLOGICAL_SAFETY, EvidenceLevel.EXPERIMENTALLY_TESTED, True).status == ClaimStatus.FORBIDDEN
+                    evaluate_claim_gate(ClaimCategory.BIOLOGICAL_SAFETY, EvidenceLevel.EXPERIMENTALLY_TESTED, True)['status'] == ClaimStatus.FORBIDDEN
                 )),
                 ("experimental_forbidden", lambda: (
-                    evaluate_claim_gate(ClaimCategory.EXPERIMENTAL_VALIDATION, EvidenceLevel.EXPERIMENTALLY_TESTED, True).status == ClaimStatus.FORBIDDEN
+                    evaluate_claim_gate(ClaimCategory.EXPERIMENTAL_VALIDATION, EvidenceLevel.EXPERIMENTALLY_TESTED, True)['status'] == ClaimStatus.FORBIDDEN
                 )),
             ]
             
