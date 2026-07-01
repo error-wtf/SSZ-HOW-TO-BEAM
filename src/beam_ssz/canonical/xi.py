@@ -4,7 +4,7 @@ Aligned with ssz-complete-documentation.
 
 Formulas:
 - Weak: Ξ_weak(r) = r_s / (2r) for r/r_s > 2.2
-- Strong: Ξ_strong(r) = 1 - exp(-φ * r_s / r) for r/r_s < 1.8
+- Strong: Ξ_strong(r) = 1 - exp(-φ * r_s / r) for r_s/r < 1.8
 - Blend: C² Hermite interpolation for 1.8 ≤ r/r_s ≤ 2.2
 
 Horizon values:
@@ -52,7 +52,7 @@ def xi_weak(r: Union[float, np.ndarray], r_s: float = 1.0) -> Union[float, np.nd
 def xi_strong(r: Union[float, np.ndarray], r_s: float = 1.0) -> Union[float, np.ndarray]:
     """Strong-field/inner branch: Ξ_strong(r) = 1 - exp(-φ * r_s / r).
     
-    Valid for: r/r_s < 1.8
+    Valid for: r_s/r < 1.8
     
     At horizon (r = r_s):
         Ξ(r_s) = 1 - exp(-φ) ≈ 0.801711847...
@@ -148,7 +148,7 @@ def xi_canonical(r: Union[float, np.ndarray],
         Canonical Ξ value
         
     Branch selection:
-        r/r_s < 1.8:  xi_strong (strong field)
+        r_s/r < 1.8:  xi_strong (strong field)
         1.8-2.2:      xi_blend (interpolation)
         > 2.2:        xi_weak (weak field)
     """

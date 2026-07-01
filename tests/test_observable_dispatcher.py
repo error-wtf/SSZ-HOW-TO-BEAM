@@ -23,7 +23,7 @@ class TestRegimeClassification:
     """Test regime classification by r/r_s."""
     
     def test_very_close_regime(self):
-        """r/r_s < 1.8 → VERY_CLOSE."""
+        """r_s/r < 1.8 → VERY_CLOSE."""
         assert classify_regime(1.0, 1.0) == Regime.VERY_CLOSE
         assert classify_regime(1.5, 1.0) == Regime.VERY_CLOSE
         assert classify_regime(1.79, 1.0) == Regime.VERY_CLOSE

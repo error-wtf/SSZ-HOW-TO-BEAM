@@ -24,7 +24,7 @@ class ObservableType(Enum):
 
 class Regime(Enum):
     """SSZ regime classification by r/r_s."""
-    VERY_CLOSE = auto()  # r/r_s < 1.8, inner exponential
+    VERY_CLOSE = auto()  # r_s/r < 1.8, inner exponential
     BLENDED = auto()  # 1.8–2.2, Hermite blend
     PHOTON_SPHERE = auto()  # 2.2–3.0
     STRONG = auto()  # 3.0–10.0

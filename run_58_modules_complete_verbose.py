@@ -42,7 +42,7 @@ def test_xi_from_radius():
     from beam_ssz import xi_from_radius
     print("┌─ CANONICAL SSZ FORMULAS ──────────────────────────────────────────────────┐")
     print("│ Xi_weak(r) = r_s/(2r)       for r/r_s > 2.2")
-    print("│ Xi_strong(r) = 1 - exp(-φ·r_s/r) for r/r_s < 1.8")
+    print("│ Xi_strong(r) = 1 - exp(-φ·r_s/r) for r_s/r < 1.8")
     print("│ Blend zone: 1.8 ≤ r/r_s ≤ 2.2")
     print("│ D_SSZ = 1/(1+Xi)  |  s = 1+Xi = 1/D")
     print("│ At r = r_s: Xi = 0.801711847, D = 0.555027709, s = 1.801711847")

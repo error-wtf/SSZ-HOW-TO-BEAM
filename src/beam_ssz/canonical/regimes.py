@@ -10,7 +10,7 @@ import numpy as np
 
 class Regime(Enum):
     """SSZ regime classification."""
-    VERY_CLOSE = auto()      # r/r_s < 1.8: strong field, exp form
+    VERY_CLOSE = auto()      # r_s/r < 1.8: strong field, exp form
     BLENDED = auto()         # 1.8 ≤ r/r_s ≤ 2.2: interpolation
     PHOTON_SPHERE = auto()   # 2.2 < r/r_s < 3.0: transition
     STRONG = auto()          # 3.0 ≤ r/r_s ≤ 10.0: weak field valid

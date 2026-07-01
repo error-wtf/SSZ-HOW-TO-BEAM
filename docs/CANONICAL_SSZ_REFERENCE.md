@@ -40,7 +40,7 @@ Valid for: r/r_s > 2.2
 ### Strong/Inner Branch
 ```
 Ξ_strong(r) = 1 - exp(-φ * r_s / r)
-Valid for: r/r_s < 1.8
+Valid for: r_s/r < 1.8
 φ = 0.20898764024997873... (SSZ scaling constant)
 ```
 
