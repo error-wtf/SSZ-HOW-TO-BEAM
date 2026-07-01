@@ -1,6 +1,6 @@
 # SSZ-HOW-TO-BEAM v1.0.0 - FULL TEST REPORT
 
-**Generated:** 2026-07-01T01:25:39.409006
+**Generated:** 2026-07-01T01:50:41.905590
 **Version:** 1.1.0
 **Python:** 3.13.2
 **Platform:** linux
@@ -15,7 +15,7 @@
 | Passed | 24 (100.0%) |
 | Failed | 0 |
 | Test Suites | 7 |
-| Total Duration | 0.46s |
+| Total Duration | 0.68s |
 
 **✅ STATUS: ALL TESTS PASSED (100%)**
 
@@ -224,7 +224,7 @@ Based on these test results:
 ```json
 {
   "version": "1.0.0",
-  "date": "2026-07-01T01:25:39.409006",
+  "date": "2026-07-01T01:50:41.905590",
   "python_version": "3.13.2 | packaged by Anaconda, Inc. | (main, Feb  6 2025, 18:56:02) [GCC 11.2.0]",
   "platform": "linux",
   "beam_ssz_version": "1.1.0"
